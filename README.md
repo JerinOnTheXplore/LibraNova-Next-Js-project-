@@ -1,4 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# LibraNova 📚
+
+**LibraNova** is a modern digital library and book rental platform built with **Next.js 15** and **MongoDB**, allowing users to browse, rent, and read books online. The platform supports **role-based access** for Users, Librarians, and Admins, and includes payment integration for book rentals.
+
+---
+
+## **Features**
+
+### 🌟 User
+- Register/Login with **Firebase Authentication** (Email/Google)
+- Browse books by **category, author, or title**
+- Borrow books by paying rental fees (**Stripe / PayPal / SSLCommerz**)
+- View borrowed books list with **due dates**
+- Read books online with **PDF preview / embedded reader**
+- Get **email/notification reminders** for due dates
+- Extend rental period (with extra fee)
+- Leave **ratings & reviews** for books
+
+### 📚 Librarian
+- Login with **librarian role**
+- Add, update, or remove books
+- View statistics (most rented books, availability)
+
+### 🛠 Admin
+- Manage users (ban/remove)
+- Manage librarians (add/remove)
+- Approve or reject librarian-submitted books
+- View overall reports (rentals, payments, active users)
+- Handle disputes and refunds
+
+---
+
+## **Functional Requirements**
+- **Authentication & Authorization**: Firebase Auth + JWT for protected routes  
+- **Book Management**: Search, filter, categories, pagination/lazy loading  
+- **Rental System**: Add to cart → Pay → Borrow, automatic due date tracking  
+- **Payment Integration**: Stripe / PayPal / SSLCommerz  
+- **Dashboards**: Separate dashboards for Users, Librarians, Admins
+
+---
+
+## **Tech Stack**
+
+- **Frontend:** Next.js 15 (App Router), Tailwind CSS / DaisyUI  
+- **Backend:** Next.js API Routes (No separate Express needed)  
+- **Database:** MongoDB Atlas (using official Node.js driver)  
+- **Authentication:** Firebase Auth + JWT  
+- **Payment:** Stripe / PayPal / SSLCommerz  
+- **Hosting:** Vercel (Frontend), MongoDB Atlas (Database)
+
+---
+
+## **Project Structure**
+
+
 
 ## Getting Started
 
