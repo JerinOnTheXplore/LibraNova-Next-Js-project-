@@ -36,7 +36,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex mx-auto max-w-4xl py-3 px-5 bg-teal-700 text-white items-center gap-4 rounded-full">
+        <div className="hidden md:hidden lg:flex mx-auto max-w-4xl py-3 px-5 bg-teal-700 text-white items-center gap-4 rounded-full">
           {/* Books Dropdown */}
           <DropdownMenu
             title="Books"
@@ -95,7 +95,7 @@ export default function Navbar() {
         </div>
 
         {/* Right Side - Auth & Search */}
-        <div className="hidden md:flex items-center gap-5 text-gray-700">
+        <div className="hidden md:hidden lg:flex items-center gap-5 text-gray-700">
           <button className="hover:text-teal-600">
             <FaSearch className="w-5 h-5" />
           </button>
@@ -118,7 +118,7 @@ export default function Navbar() {
         {/* Mobile Hamburger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-gray-700 hover:text-teal-600"
+          className="block md:block lg:hidden  text-gray-700 hover:text-teal-600"
         >
           {isOpen ? <FaTimes className="w-7 h-7" /> : <FaBars className="w-7 h-7" />}
         </button>
@@ -132,7 +132,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
-            className="fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-teal-600 to-teal-700 text-white shadow-xl p-6 z-40"
+            className="fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-teal-800 to-teal-700 text-white shadow-xl p-6 z-40"
           >
             <div className="flex justify-between items-center mb-10">
               <span className="text-lg font-semibold">Menu</span>
@@ -141,7 +141,7 @@ export default function Navbar() {
               </button>
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col -ml-2 bg-gradient-to-b from-teal-800 to-teal-900 p-2 gap-4">
               <LinkItemMobile href="/books" label="Books" icon={<FaBookOpen />} />
               <LinkItemMobile
                 href="/dashboard/user"
