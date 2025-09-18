@@ -45,7 +45,7 @@
 - **Backend:** Next.js API Routes (No separate Express needed)  
 - **Database:** MongoDB Atlas (using official Node.js driver)  
 - **Authentication:** Firebase Auth + JWT  
-- **Payment:** Stripe / PayPal / SSLCommerz  
+- **Payment:** Stripe   
 - **Hosting:** Vercel (Frontend), MongoDB Atlas (Database)
 
 ---
