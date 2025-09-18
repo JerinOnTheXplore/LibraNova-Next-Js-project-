@@ -7,9 +7,6 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <section className="relative w-full h-screen bg-gradient-to-r from-teal-600 to-teal-500 overflow-hidden">
-      {/* Decorative Background Circles */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 flex flex-col justify-center h-full">
         {/* Heading */}
@@ -57,9 +54,9 @@ export default function Hero() {
       </div>
 
       {/* Floating Book Images on Right - Stair Layout */}
-      <div className="absolute right-18 md:right-36 top-120 md:top-1/6 flex md:flex-col items-end gap-8 z-0">
-        <FloatingImage src="/images/book3.png" size={180} delay={0} />
-        <FloatingImage src="/images/book2.png" size={200}  delay={0.3} />
+      <div className="absolute right-10 md:right-36 top-120 lg:top-1/6 flex md:flex lg:flex-col items-end gap-8 z-0">
+        <FloatingImage src="/images/book3.png" size={220} delay={0} />
+        <FloatingImage src="/images/book2.png" size={220}  delay={0.3} />
         <FloatingImage src="/images/book1.png" size={220} delay={0.6} />
       </div>
 
