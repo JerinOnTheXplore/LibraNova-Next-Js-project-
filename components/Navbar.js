@@ -142,12 +142,29 @@ export default function Navbar() {
             </div>
 
             <div className="flex flex-col -ml-2 bg-gradient-to-b from-teal-800 to-teal-900 p-2 gap-4">
-              <LinkItemMobile href="/books" label="Books" icon={<FaBookOpen />} />
-              <LinkItemMobile
-                href="/dashboard/user"
-                label="Dashboard"
-                icon={<FaTachometerAlt />}
+              {/* Books Dropdown (Mobile) */}
+              <DropdownMenuMobile
+                title="Books"
+                icon={<FaBookOpen />}
+                items={[
+                  { href: "/books", label: "Browse All" },
+                  { href: "/books?cat=novel", label: "Novels" },
+                  { href: "/books?cat=science", label: "Science" },
+                  { href: "/books?cat=tech", label: "Technology" },
+                ]}
               />
+
+              {/* Dashboard Dropdown (Mobile) */}
+              <DropdownMenuMobile
+                title="Dashboard"
+                icon={<FaTachometerAlt />}
+                items={[
+                  { href: "/dashboard/user", label: "User Dashboard" },
+                  { href: "/dashboard/librarian", label: "Librarian Dashboard" },
+                  { href: "/dashboard/admin", label: "Admin Dashboard" },
+                ]}
+              />
+
               <LinkItemMobile
                 href="/my-library"
                 label="My Library"
@@ -179,7 +196,7 @@ export default function Navbar() {
   );
 }
 
-/* ---------- DropdownMenu Component ---------- */
+/* ---------- DropdownMenu Component (Desktop) ---------- */
 function DropdownMenu({ title, icon, children }) {
   return (
     <div className="relative group">
@@ -189,6 +206,32 @@ function DropdownMenu({ title, icon, children }) {
       <div className="absolute left-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 hover:visible hover:opacity-100 transition-all duration-200 grid grid-cols-1 gap-2 p-4 bg-white shadow-xl rounded-xl w-48 top-10 text-gray-800">
         {children}
       </div>
+    </div>
+  );
+}
+
+/* ---------- DropdownMenuMobile Component (Mobile Drawer) ---------- */
+function DropdownMenuMobile({ title, icon, items }) {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div>
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex items-center justify-between w-full hover:bg-white/20 p-2 rounded-lg transition-colors"
+      >
+        <span className="flex items-center gap-3">{icon} {title}</span>
+        <span>{open ? "−" : "+"}</span>
+      </button>
+      {open && (
+        <div className="ml-6 mt-2 flex flex-col gap-2">
+          {items.map((item) => (
+            <Link key={item.href} href={item.href} className="hover:underline">
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

@@ -9,7 +9,7 @@ export async function GET(req) {
     const db = client.db("libra-nova"); 
 
     let filter = {};
-    if (category && category !== "all") filter.category = category;
+    if (category && category !== "all") filter.category = { $regex: new RegExp(category, "i") };
 
     const books = await db
       .collection("books")
