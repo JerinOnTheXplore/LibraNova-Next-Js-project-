@@ -9,7 +9,7 @@
 ### 🌟 User
 - Register/Login with **Firebase Authentication** (Email/Google)
 - Browse books by **category, author, or title**
-- Borrow books by paying rental fees (**Stripe / PayPal / SSLCommerz**)
+- Borrow books by paying rental fees (**Stripe)
 - View borrowed books list with **due dates**
 - Read books online with **PDF preview / embedded reader**
 - Get **email/notification reminders** for due dates
