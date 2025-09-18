@@ -34,7 +34,7 @@
 - **Authentication & Authorization**: Firebase Auth + JWT for protected routes  
 - **Book Management**: Search, filter, categories, pagination/lazy loading  
 - **Rental System**: Add to cart → Pay → Borrow, automatic due date tracking  
-- **Payment Integration**: Stripe / PayPal / SSLCommerz  
+- **Payment Integration**: Stripe   
 - **Dashboards**: Separate dashboards for Users, Librarians, Admins
 
 ---
