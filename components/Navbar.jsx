@@ -21,7 +21,7 @@ import { auth } from "@/utils/firebase";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, role } = useAuth();
-  const { theme, toggleTheme } = useTheme();
+  const { darkMode, toggleTheme } = useTheme();
 
   const booksDropdownItems = [
     { href: "/books", label: "Browse All" },
@@ -64,6 +64,7 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex mx-auto max-w-4xl py-3 px-5 bg-teal-700 text-white items-center gap-4 rounded-full">
+          <LinkItem href="/" label="Home" />
           <DropdownMenu title="Books" items={booksDropdownItems} />
           {user && (
             <DropdownMenu
@@ -82,10 +83,10 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-3">
           {/* Theme Toggle */}
           <button onClick={toggleTheme} className="p-2 rounded transition-colors">
-            {theme ? (
+            {darkMode ? (
               <FaSun className="w-5 h-5 text-yellow-300" />
               ) : (
-                <FaMoon className="w-5 h-5 text-yellow-300" />
+              <FaMoon className="w-5 h-5 text-yellow-300" />
             )}
           </button>
 
@@ -157,6 +158,7 @@ export default function Navbar() {
                 </button>
               </div>
               <div className="flex flex-col gap-4 bg-base-200 text-base-content px-2">
+                <LinkItemMobile href="/" label="Home" />
                 <DropdownMenuMobile title="Books" items={booksDropdownItems} />
                 {user && (
                   <DropdownMenuMobile
@@ -175,9 +177,9 @@ export default function Navbar() {
                 {/* Theme Toggle Mobile */}
                 <button
                   onClick={toggleTheme}
-                  className="flex items-center gap-2 p-2  hover:bg-white/20 rounded"
+                  className="flex items-center gap-2 p-2  hover:bg-white/20 dark:hover:bg-white/20 rounded"
                 >
-                  {theme === "light" ? <FaMoon className="text-yellow-500" /> :  <FaSun className="text-yellow-500" />} Toggle Theme
+                  {darkMode ? <FaSun className="text-yellow-500" /> :  <FaMoon className="text-yellow-500" />} Toggle Theme
                 </button>
               </div>
             </motion.aside>
@@ -195,7 +197,7 @@ function DropdownMenu({ title, items }) {
       <button className="flex items-center gap-1 hover:text-gray-200 focus:outline-none">
         {title}
       </button>
-      <div className="absolute left-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 grid grid-cols-1 gap-2 p-4 bg-white shadow-xl rounded-xl w-48 top-10 text-gray-800">
+      <div className="absolute left-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 grid grid-cols-1 gap-2 p-4 bg-base-200 shadow-xl rounded-xl w-48 top-10 text-base-content">
         {items.map((item) => (
           <Link key={item.href} href={item.href} className="hover:underline">
             {item.label}
