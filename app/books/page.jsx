@@ -31,14 +31,14 @@ export default function BooksPage() {
   }, [category]);
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-white via-teal-50 to-white py-16">
+    <section className="min-h-screen bg-base-100 py-16">
       <div className="max-w-7xl mx-auto px-4 py-24">
         {/* Page Heading */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-teal-800 drop-shadow-sm">
             {category ? `${category} Books` : "Our Collection"}
           </h1>
-          <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-3 text-base-content max-w-2xl mx-auto">
             {category
               ? `Explore the best ${category} books in our digital library.`
               : "Browse from a wide range of categories and start reading today."}
