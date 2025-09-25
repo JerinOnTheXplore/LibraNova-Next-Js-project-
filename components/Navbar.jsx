@@ -66,12 +66,7 @@ export default function Navbar() {
         <div className="hidden lg:flex mx-auto max-w-4xl py-3 px-5 bg-teal-700 text-white items-center gap-4 rounded-full">
           <LinkItem href="/" label="Home" />
           <DropdownMenu title="Books" items={booksDropdownItems} />
-          {user && (
-            <DropdownMenu
-              title="Dashboard"
-              items={dashboardItems.filter((item) => item.roles.includes(role))}
-            />
-          )}
+          <LinkItem href="/dashboard/dashboardContent" label="Dashboard" />
           <LinkItem href="/my-library" label="My Library" />
           <LinkItem href="/rentals" label="Rentals" />
           <LinkItem href="/pricing" label="Pricing" />
@@ -160,12 +155,7 @@ export default function Navbar() {
               <div className="flex flex-col gap-4 bg-base-200 text-base-content px-2">
                 <LinkItemMobile href="/" label="Home" />
                 <DropdownMenuMobile title="Books" items={booksDropdownItems} />
-                {user && (
-                  <DropdownMenuMobile
-                    title="Dashboard"
-                    items={dashboardItems.filter((item) => item.roles.includes(role))}
-                  />
-                )}
+                <LinkItemMobile href="/dashboard/dashboardContent" label="Dashboard" />
                 <LinkItemMobile href="/my-library" label="My Library" />
                 <LinkItemMobile href="/rentals" label="Rentals" />
                 <LinkItemMobile href="/pricing" label="Pricing" />
@@ -245,11 +235,12 @@ function LinkItem({ href, label }) {
 
 function LinkItemMobile({ href, label, onClick }) {
   return (
-    <button
-      onClick={onClick}
-      className="flex items-center gap-3 w-full text-left hover:bg-white/20 p-2 rounded-lg transition-colors"
-    >
-      {label}
-    </button>
-  );
+      <Link
+        href={href}
+        onClick={onClick}
+        className="flex items-center gap-3 w-full text-left hover:bg-gray-500 p-2 rounded-lg transition-colors"
+      >
+        {label}
+      </Link>
+    );
 }
