@@ -4,6 +4,8 @@ export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
     const category = searchParams.get("category");
+    const title = searchParams.get("title");
+
 
     const client = await clientPromise;
     const db = client.db("libra-nova"); 
