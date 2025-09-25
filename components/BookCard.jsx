@@ -9,11 +9,15 @@ export default function BookCard({ book }) {
       {/* Book Cover */}
       <div className="relative w-full h-64 md:h-72">
         <Image
-          src={book.image || "/images/book1.png"}
-          alt={book.title}
-          fill
-          className="object-cover"
-        />
+  src={book.image || "/images/book1.png"}
+  alt={book.title}
+  fill
+  sizes="(max-width: 768px) 100vw, 
+         (max-width: 1200px) 50vw, 
+         33vw"
+  className="object-cover rounded-lg"
+/>
+
       </div>
 
       {/* Book Info */}
@@ -27,7 +31,7 @@ export default function BookCard({ book }) {
         {/* Buttons */}
         <div className="mt-4 flex flex-col gap-2">
           <Link
-            href={`/books/${encodeURIComponent(book.title)}`}
+            href={`/books/${book._id}`}
             className="w-full text-center py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition"
           >
             View Details

@@ -1,73 +1,78 @@
-"use client";
+import clientPromise from "../../../utils/mongodb";
+import { ObjectId } from "mongodb";
+import Link from "next/link";
 
-import { useState, useEffect } from "react";
-import Image from "next/image";
+export default async function BookDetails({ params }) {
+  const client = await clientPromise;
+  const db = (await client).db("libra-nova");
 
-// MongoDB theke fetch 
-async function fetchBook(title) {
-  const res = await fetch(`/api/books?title=${encodeURIComponent(title)}`);
-  const books = await res.json();
-  return books[0] || null;
-}
+  let book = null;
+  try {
+    book = await db.collection("books").findOne({ _id: new ObjectId(params.id) });
+  } catch (e) {
+    console.error("Invalid ObjectId:", e);
+  }
 
-export default function BookDetails({ params }) {
-  const { bookTitle } = params;
-  const [book, setBook] = useState(null);
-
-  useEffect(() => {
-    fetchBook(bookTitle).then(setBook);
-  }, [bookTitle]);
-
-  if (!book) return <p className="p-6 text-center">Loading or Book not found...</p>;
-
-  const handleBorrow = () => alert(`Borrowed "${book.title}"`);
-  const handlePay = () => alert(`Paid for "${book.title}"`);
-  const handleReview = () => alert(`Review submitted for "${book.title}"`);
-
-  
-  const price = book.price?.$numberDouble ? parseFloat(book.price.$numberDouble) : book.price;
+  if (!book) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <h1 className="text-2xl font-bold text-red-600">Book not found!</h1>
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-4xl mx-auto p-6 flex flex-col md:flex-row gap-6">
-      {/* Book Cover */}
-      <div className="relative w-full md:w-1/3 h-80 md:h-96 rounded-lg overflow-hidden shadow-lg">
-        <Image
-          src={book.image || "/images/book1.png"}
-          alt={book.title}
-          fill
-          className="object-cover"
-        />
-      </div>
+    <section className="min-h-screen bg-base-100 py-24 md:py-48 px-6">
+      <div className="max-w-5xl mx-auto">
+        {/* Back Button */}
+        <Link
+          href="/books"
+          className="inline-block mb-6 px-4 py-2 rounded-lg bg-base-200 text-base-content hover:bg-gray-300 dark:hover:bg-gray-400 transition"
+        >
+          ← Back
+        </Link>
 
-      {/* Book Info */}
-      <div className="flex-1 flex flex-col gap-4">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">{book.title}</h1>
-        <p className="text-gray-600 dark:text-gray-300">{book.author}</p>
-        {book.description && <p className="text-gray-700 dark:text-gray-200">{book.description}</p>}
-        <p className="text-teal-600 font-semibold text-lg">${price}</p>
+        <div className="bg-base-300 shadow-xl rounded-lg overflow-hidden flex flex-col md:flex-row gap-6">
+          {/* Left: Image */}
+          <div className="md:w-1/3 w-full">
+            <img
+              src={book.image}
+              alt={book.title}
+              className="w-full h-96 object-cover"
+            />
+          </div>
 
-        {/* Action Buttons */}
-        <div className="mt-4 flex flex-col md:flex-row gap-3">
-          <button
-            onClick={handleBorrow}
-            className="px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition"
-          >
-            Borrow
-          </button>
-          <button
-            onClick={handlePay}
-            className="px-4 py-2 rounded-lg border border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white transition"
-          >
-            Pay
-          </button>
-          <button
-            onClick={handleReview}
-            className="px-4 py-2 rounded-lg border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition"
-          >
-            Review
-          </button>
+          {/* Right: Details */}
+          <div className="flex-1 p-6 flex flex-col justify-between">
+            <div>
+              <h1 className="text-3xl font-bold text-base-content">{book.title}</h1>
+              <p className="mt-2 text-base-content text-lg">by {book.author}</p>
+              <p className="mt-4 text-base text-base-content leading-relaxed">
+                {book.category}
+              </p>
+              <p className="mt-4 text-base text-base-content leading-relaxed">
+                {book.description}
+              </p>
+              <p className="mt-6 text-teal-600 font-semibold text-xl">
+                ${book.price}
+              </p>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="mt-8 flex flex-col sm:flex-row gap-4">
+              <button className="flex-1 px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition">
+                Borrow
+              </button>
+              <button className="flex-1 px-4 py-2 rounded-lg border border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white transition">
+                Pay
+              </button>
+              <button className="flex-1 px-4 py-2 rounded-lg border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition">
+                Review
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
