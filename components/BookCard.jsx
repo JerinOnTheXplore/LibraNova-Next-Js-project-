@@ -1,51 +1,93 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { useState } from "react";
+import AddReview from "./AddReview";
+import { getAuth } from "firebase/auth";
+import app from "@/utils/firebase";
 
-export default function BookCard({ book }) {
+export default function BookCard({ book, onBorrow }) {
+  const auth = getAuth(app);
+  const user = auth.currentUser;
+  const [showReviewForm, setShowReviewForm] = useState(false);
+
+  const handleBorrow = async () => {
+    if (!user) {
+      alert("Please login to borrow books.");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/borrowed", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          bookId: book._id,
+          bookTitle: book.title,
+          userEmail: user.email,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to borrow book");
+
+      alert("Book borrowed successfully!");
+      if (onBorrow) onBorrow(); // callback for parent to refresh borrowed books
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  };
+
+  const handlePay = () => {
+    alert("Payment functionality not implemented yet!");
+  };
+
   return (
-    <div className="bg-base-300 rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform duration-300 flex flex-col">
-      {/* Book Cover */}
-      <div className="relative w-full h-64 md:h-72">
-        <Image
-  src={book.image || "/images/book1.png"}
-  alt={book.title}
-  fill
-  sizes="(max-width: 768px) 100vw, 
-         (max-width: 1200px) 50vw, 
-         33vw"
-  className="object-cover rounded-lg"
-/>
+    <div className="bg-base-200 rounded-lg shadow-lg overflow-hidden flex flex-col">
+      {/* Book Image */}
+      <img
+        src={book.image}
+        alt={book.title}
+        className="w-full h-56 object-cover md:h-64 lg:h-72"
+      />
 
-      </div>
-
-      {/* Book Info */}
-      <div className="p-4 flex flex-col flex-1 justify-between">
+      {/* Book Details */}
+      <div className="p-4 flex-1 flex flex-col justify-between">
         <div>
-          <h3 className="font-bold text-lg text-base-content line-clamp-2">{book.title}</h3>
-          <p className="text-sm text-base-content mt-1">{book.author}</p>
-          <p className="mt-2 text-teal-600 font-semibold text-lg">${book.price}</p>
+          <h3 className="font-semibold text-lg">{book.title}</h3>
+          <p className="text-sm text-gray-500">by {book.author}</p>
+          <p className="text-sm mt-2">{book.category}</p>
+          <p className="text-teal-600 font-semibold mt-2">${book.price}</p>
         </div>
 
-        {/* Buttons */}
-        <div className="mt-4 flex flex-col gap-2">
-          <Link
-            href={`/books/${book._id}`}
-            className="w-full text-center py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition"
+        {/* Action Buttons */}
+        <div className="mt-4 flex flex-col sm:flex-row sm:flex-wrap gap-2">
+          <button
+            onClick={handleBorrow}
+            className="flex-1 min-w-[100px] px-3 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
           >
-            View Details
-          </Link>
-          <button className="w-full py-2 rounded-lg border border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white transition">
             Borrow
           </button>
-          <button className="w-full py-2 rounded-lg border border-gray-400 text-base-content hover:bg-gray-400 hover:text-white transition">
+          <button
+            onClick={handlePay}
+            className="flex-1 min-w-[100px] px-3 py-2 border border-teal-600 text-teal-600 rounded-lg hover:bg-teal-600 hover:text-white transition"
+          >
             Pay
           </button>
-          <button className="w-full py-2 rounded-lg border border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition">
+          <button
+            onClick={() => setShowReviewForm(!showReviewForm)}
+            className="flex-1 min-w-[100px] px-3 py-2 border border-yellow-500 text-yellow-500 rounded-lg hover:bg-yellow-500 hover:text-white transition"
+          >
             Review
           </button>
         </div>
+
+        {/* Review Form */}
+        {showReviewForm && (
+          <div className="mt-4">
+            <AddReview bookId={book._id} />
+          </div>
+        )}
       </div>
     </div>
   );

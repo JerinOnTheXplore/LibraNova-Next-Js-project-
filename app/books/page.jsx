@@ -10,6 +10,8 @@ export default function BooksPage() {
 
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1); // current page
+  const perPage = 8; // 8 books per page
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -20,6 +22,7 @@ export default function BooksPage() {
         const res = await fetch(url);
         const data = await res.json();
         setBooks(data);
+        setPage(1); // reset page when category changes
       } catch (err) {
         console.error(err);
       } finally {
@@ -29,6 +32,13 @@ export default function BooksPage() {
 
     fetchBooks();
   }, [category]);
+
+  // Current books to show
+  const displayedBooks = books.slice(0, page * perPage);
+
+  // Load more handler
+  const handleLoadMore = () => setPage(page + 1);
+  
 
   return (
     <section className="min-h-screen bg-base-100 py-16">
@@ -61,12 +71,26 @@ export default function BooksPage() {
         )}
 
         {/* Book Grid */}
-        {!loading && books.length > 0 && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {books.map((book) => (
-              <BookCard key={book._id} book={book} />
-            ))}
-          </div>
+        {!loading && displayedBooks.length > 0 && (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              {displayedBooks.map((book) => (
+                <BookCard key={book._id} book={book} />
+              ))}
+            </div>
+
+            {/* Load More Button */}
+            {displayedBooks.length < books.length && (
+              <div className="mt-8 text-center">
+                <button
+                  onClick={handleLoadMore}
+                  className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
+                >
+                  Load More
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>

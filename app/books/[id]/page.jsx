@@ -1,3 +1,4 @@
+
 import AddReview from "@/components/AddReview";
 import clientPromise from "../../../utils/mongodb";
 import { ObjectId } from "mongodb";
@@ -6,8 +7,10 @@ import Link from "next/link";
 export default async function BookDetails({ params }) {
   const client = await clientPromise;
   const db = (await client).db("libra-nova");
+  
 
-  // 🔹 Fetch main book
+
+  //  Fetch main book
   let book = null;
   try {
     book = await db.collection("books").findOne({ _id: new ObjectId(params.id) });
@@ -23,7 +26,7 @@ export default async function BookDetails({ params }) {
     );
   }
 
-  // 🔹 Fetch related books (same category, excluding current one)
+  //  Fetch related books (same category, excluding current one)
   let relatedBooks = [];
   try {
     relatedBooks = await db
@@ -35,7 +38,7 @@ export default async function BookDetails({ params }) {
     console.error("Error fetching related books:", e);
   }
 
-  // 🔹 Fetch reviews for this book
+  //  Fetch reviews for this book
   let reviews = [];
   try {
     reviews = await db
@@ -87,7 +90,7 @@ export default async function BookDetails({ params }) {
 
             {/* Action Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <button className="flex-1 px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition">
+              <button  className="flex-1 px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-700 transition">
                 Borrow
               </button>
               <button className="flex-1 px-4 py-2 rounded-lg border border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white transition">
