@@ -9,27 +9,27 @@ export default function BorrowedBooks() {
   const auth = getAuth(app);
   const user = auth.currentUser;
 
-  const fetchBorrowed = async () => {
-    if (!user) return;
-    try {
-      const res = await fetch(`/api/borrowed?email=${user.email}`);
-      const data = await res.json();
-      setBorrowed(data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   useEffect(() => {
-    fetchBorrowed();
+    if (!user) return;
+
+    try {
+      const stored = localStorage.getItem("borrowedBooks");
+      if (stored) {
+        const all = JSON.parse(stored);
+        const filtered = all.filter((b) => b.userEmail === user.email);
+        setBorrowed(filtered);
+      }
+    } catch (err) {
+      console.error("Error parsing borrowedBooks:", err);
+    }
   }, [user]);
 
   if (!user) return <p>Please login to see your borrowed books.</p>;
   if (borrowed.length === 0) return <p>You haven't borrowed any books yet.</p>;
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Borrowed Books</h1>
+    <div className="bg-base-200 text-base-content">
+      <h1 className="text-2xl font-bold  mb-6 pt-36">Borrowed Books</h1>
       <ul className="space-y-4">
         {borrowed.map((b) => (
           <li key={b._id} className="p-4 border rounded-lg">

@@ -4,38 +4,41 @@ import { useState } from "react";
 import AddReview from "./AddReview";
 import { getAuth } from "firebase/auth";
 import app from "@/utils/firebase";
+import { useRouter } from "next/navigation";
 
-export default function BookCard({ book, onBorrow }) {
+export default function BookCard({ book }) {
   const auth = getAuth(app);
   const user = auth.currentUser;
   const [showReviewForm, setShowReviewForm] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const router = useRouter();
 
-  const handleBorrow = async () => {
+  const handleBorrow = () => {
     if (!user) {
       alert("Please login to borrow books.");
       return;
     }
 
-    try {
-      const res = await fetch("/api/borrowed", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          bookId: book._id,
-          bookTitle: book.title,
-          userEmail: user.email,
-        }),
-      });
+    // save in localStorage
+    const borrowedBook = {
+      _id: Date.now().toString(),
+      bookId: book._id,
+      bookTitle: book.title,
+      userEmail: user.email,
+      borrowedAt: new Date().toISOString(),
+    };
 
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to borrow book");
+    const existing = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+    existing.push(borrowedBook);
+    localStorage.setItem("borrowedBooks", JSON.stringify(existing));
 
-      alert("Book borrowed successfully!");
-      if (onBorrow) onBorrow(); // callback for parent to refresh borrowed books
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    }
+    // show modal
+    setShowModal(true);
+  };
+
+  const handleGoToBorrowed = () => {
+    setShowModal(false);
+    router.push("/dashboard/user/borrowed");
   };
 
   const handlePay = () => {
@@ -89,6 +92,32 @@ export default function BookCard({ book, onBorrow }) {
           </div>
         )}
       </div>
+
+      {/* Borrow Success Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-base-100 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-base-200 rounded-lg shadow-lg p-6 w-96 text-center">
+            <h2 className="text-xl font-bold text-teal-700 mb-3">🎉 Success!</h2>
+            <p className="text-base-content mb-4">
+              You have successfully borrowed <strong>{book.title}</strong>.
+            </p>
+            <div className="flex justify-center gap-3">
+              <button
+                onClick={() => setShowModal(false)}
+                className="px-4 py-2 bg-base-100 rounded-lg hover:bg-gray-300"
+              >
+                Close
+              </button>
+              <button
+                onClick={handleGoToBorrowed}
+                className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"
+              >
+                Go to My Borrowed Books
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

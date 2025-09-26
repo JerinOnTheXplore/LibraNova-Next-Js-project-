@@ -1,11 +1,93 @@
-import BorrowedBooks from "@/components/BorrowedBooks";
+"use client";
+
+import { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth"; //Firebase er onAuthStateChanged diye user state track korte hobe
+import app from "@/utils/firebase";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function BorrowedBooksPage() {
-  return (
-    <section className="min-h-screen bg-base-100 py-16 px-6">
-      <div className="max-w-5xl mx-auto">
-        <BorrowedBooks />
+  const [borrowed, setBorrowed] = useState([]);
+  const [user, setUser] = useState(null);
+  const auth = getAuth(app);
+
+  useEffect(() => {
+    // Firebase auth listener
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser || null);
+
+      if (currentUser) {
+        const stored = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+        const filtered = stored.filter((b) => b.userEmail === currentUser.email);
+        setBorrowed(filtered);
+      }
+    });
+
+    return () => unsubscribe(); // cleanup
+  }, [auth]);
+
+  // Handle Return
+  const handleReturn = (id) => {
+    const updated = borrowed.filter((b) => b._id !== id);
+    setBorrowed(updated);
+
+    const stored = JSON.parse(localStorage.getItem("borrowedBooks")) || [];
+    const newStored = stored.filter((b) => b._id !== id);
+    localStorage.setItem("borrowedBooks", JSON.stringify(newStored));
+
+    toast.success("Book returned successfully!");
+  };
+
+  if (user === null) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center ">
+        <h2 className="text-xl font-semibold">Please login to see your borrowed books.</h2>
       </div>
-    </section>
+    );
+  }
+
+  if (borrowed.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center ">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/4076/4076500.png"
+          alt="Empty"
+          className="w-32 h-32 mb-4 opacity-70"
+        />
+        <h2 className="text-xl font-semibold">You haven't borrowed any books yet.</h2>
+        <p className="text-gray-500 mt-2">Go back and borrow your first book!</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-base-100">
+      <div className="p-6 pt-24 md:pt-36 max-w-7xl mx-auto bg-base-100">
+      <Toaster position="top-right" />
+      <h1 className="text-3xl font-bold mb-6 text-center text-teal-700">📚 My Borrowed Books</h1>
+
+      <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {borrowed.map((b) => (
+          <div
+            key={b._id}
+            className="bg-base-200 text-base-content border rounded-xl shadow-md p-5 hover:shadow-lg transition"
+          >
+            <h3 className="font-semibold text-lg text-base-content">{b.bookTitle}</h3>
+            <p className="text-sm text-base-content mt-1">
+              Borrowed At:{" "}
+              <span className="font-medium">{new Date(b.borrowedAt).toLocaleString()}</span>
+            </p>
+            <div className="mt-4 flex justify-end">
+              <button
+                onClick={() => handleReturn(b._id)}
+                className="px-3 py-1 text-sm rounded-lg bg-teal-500 text-white hover:bg-teal-600"
+              >
+                Return
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+    </div>
   );
 }

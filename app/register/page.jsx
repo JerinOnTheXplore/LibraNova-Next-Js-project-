@@ -17,7 +17,7 @@ export default function RegisterPage() {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      router.push("/dashboard/user");
+      router.push("/dashboard/user/borrowed");
     } catch (err) {
       console.error(err.code, err.message);
     }
@@ -27,7 +27,7 @@ export default function RegisterPage() {
   const handleGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      router.push("/dashboard/user");
+      router.push("/dashboard/user/borrowed");
     } catch (err) {
       console.error(err.message);
     }
