@@ -108,7 +108,7 @@ export default function BookCard({ book }) {
   };
 
   const handlePay = () => {
-    if (!user) return alert("Please login to pay for books.");
+    if (!user) return toast.error("Please login to pay for books.");
     setShowPayModal(true);
   };
 
