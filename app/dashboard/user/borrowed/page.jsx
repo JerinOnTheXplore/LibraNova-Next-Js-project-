@@ -39,22 +39,22 @@ export default function BorrowedBooksPage() {
 
   if (user === null) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center ">
-        <h2 className="text-xl font-semibold">Please login to see your borrowed books.</h2>
+      <div className="flex flex-col bg-base-100 items-center justify-center min-h-[60vh] text-center ">
+        <h2 className="text-xl font-semibold text-base-content">Please login to see your borrowed books.</h2>
       </div>
     );
   }
 
   if (borrowed.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center ">
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center bg-base-100 pt-24">
         <img
           src="https://cdn-icons-png.flaticon.com/512/4076/4076500.png"
           alt="Empty"
           className="w-32 h-32 mb-4 opacity-70"
         />
-        <h2 className="text-xl font-semibold">You haven't borrowed any books yet.</h2>
-        <p className="text-gray-500 mt-2">Go back and borrow your first book!</p>
+        <h2 className="text-xl font-semibold text-base-content">You haven't borrowed any books yet.</h2>
+        <p className=" mt-2 text-base-content">Go back and borrow your first book!</p>
       </div>
     );
   }
