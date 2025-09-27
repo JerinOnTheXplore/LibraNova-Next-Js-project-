@@ -12,7 +12,13 @@ export default function DashboardLayout({ children, role = "user" }) {
   return (
     <div className="flex min-h-screen bg-base-100  pt-16 ">
       {/* Content Area (left side) */}
-      <div className="flex-1 p-4 md:p-6 overflow-y-auto ">{children}</div>
+<div
+  className={`flex-1 p-4 md:p-6 overflow-y-auto transition-all duration-300
+    ${open ? "md:mr-64" : "md:mr-0"}`}
+>
+  {children}
+</div>
+
 
       {/* Sidebar (right side) */}
       <div
