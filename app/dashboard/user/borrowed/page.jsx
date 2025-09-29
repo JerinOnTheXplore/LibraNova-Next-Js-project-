@@ -61,8 +61,8 @@ export default function BorrowedBooksPage() {
 
   return (
     <div className="bg-base-100">
-      <div className="p-6 pt-24 md:pt-36 max-w-7xl mx-auto bg-base-100">
-      <Toaster position="top-right" />
+      <div className="p-6 pt-16 md:pt-20 max-w-7xl mx-auto bg-base-100">
+      <Toaster position="top-right"/>
       <h1 className="text-3xl font-bold mb-6 text-center text-teal-700">📚 My Borrowed Books</h1>
 
       <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-6">

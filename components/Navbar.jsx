@@ -64,14 +64,14 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex mx-auto max-w-4xl py-3 px-5 bg-teal-700 text-white items-center gap-4 rounded-full">
-          <LinkItem href="/" label="Home" />
+          <LinkItem href="/" label="Home"/>
           <DropdownMenu title="Books" items={booksDropdownItems} />
           <LinkItem href="/dashboard/dashboardContent" label="Dashboard" />
-          <LinkItem href="/my-library" label="My Library" />
-          <LinkItem href="/rentals" label="Rentals" />
-          <LinkItem href="/pricing" label="Pricing" />
-          <LinkItem href="/blog" label="Blog" />
-          <LinkItem href="/about" label="About" />
+          <LinkItem href="/my-library" label="My Library"/>
+          <LinkItem href="/rentals" label="Rentals"/>
+          <LinkItem href="/pricing" label="Pricing"/>
+          <LinkItem href="/blog" label="Blog"/>
+          <LinkItem href="/about" label="About"/>
         </div>
 
         {/* Right Side */}

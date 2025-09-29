@@ -59,7 +59,7 @@ export default function PaymentsPage() {
   };
 
   return (
-    <div className="bg-base-100 pt-24 md:pt-36">
+    <div className="bg-base-100 pt-16 md:pt-20">
       <div className="p-6 max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold mb-4 text-teal-600 text-center">
           My Payments
