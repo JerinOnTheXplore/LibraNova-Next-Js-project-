@@ -39,11 +39,11 @@ export default function RemoveUserPage() {
     fetchUsers();
   };
 
-  if (loading) return <p className="text-center mt-10">Loading users...</p>;
+  if (loading) return <p className="text-center text-base-content mt-10">Loading users...</p>;
 
   return (
     <div className="p-4 sm:p-6 max-w-6xl mx-auto">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-teal-600">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-teal-600 mt-10">
         Ban / Remove Users
       </h1>
 
@@ -64,9 +64,9 @@ export default function RemoveUserPage() {
                 key={u._id}
                 className="border-b last:border-b-0 hover:bg-base-100"
               >
-                <td className="px-3 py-2">{u.name || "N/A"}</td>
-                <td className="px-3 py-2">{u.email}</td>
-                <td className="px-3 py-2 capitalize">{u.role}</td>
+                <td className="px-3 text-base-content py-2">{u.name || "N/A"}</td>
+                <td className="px-3 text-base-content py-2">{u.email}</td>
+                <td className="px-3 text-base-content py-2 capitalize">{u.role}</td>
                 <td className="px-3 py-2">
                   <span
                     className={`px-2 py-1 rounded-full text-white text-sm ${
