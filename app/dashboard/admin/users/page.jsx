@@ -31,7 +31,7 @@ export default function AdminUsersPage() {
 
   return (
     <div className="p-4 sm:p-6 max-w-6xl mx-auto">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-teal-600 text-center sm:text-left">
+      <h1 className="text-2xl text-center sm:text-3xl font-bold mb-4 sm:mb-6 text-teal-600  sm:text-left mt-12">
         Manage Users
       </h1>
 
