@@ -1,4 +1,5 @@
 import clientPromise from "@/utils/mongodb";
+import { ObjectId } from "mongodb";
 
 export async function GET() {
   try {
@@ -9,16 +10,22 @@ export async function GET() {
     return new Response(JSON.stringify(users), { status: 200 });
   } catch (error) {
     console.error("Error fetching users:", error);
-    return new Response(JSON.stringify({ error: "Failed to fetch users" }), {
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({ error: "Failed to fetch users" }),
+      { status: 500 }
+    );
   }
 }
 
 export async function PATCH(req) {
   try {
-    const body = await req.json();
-    const { id, role, status } = body;
+    const { id, role, status } = await req.json();
+
+    if (!id) {
+      return new Response(JSON.stringify({ error: "User ID required" }), {
+        status: 400,
+      });
+    }
 
     const client = await clientPromise;
     const db = client.db("libra-nova");
@@ -37,9 +44,10 @@ export async function PATCH(req) {
     });
   } catch (error) {
     console.error("Error updating user:", error);
-    return new Response(JSON.stringify({ error: "Failed to update user" }), {
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({ error: "Failed to update user" }),
+      { status: 500 }
+    );
   }
 }
 
@@ -47,6 +55,12 @@ export async function DELETE(req) {
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
+
+    if (!id) {
+      return new Response(JSON.stringify({ error: "User ID required" }), {
+        status: 400,
+      });
+    }
 
     const client = await clientPromise;
     const db = client.db("libra-nova");
@@ -58,8 +72,9 @@ export async function DELETE(req) {
     });
   } catch (error) {
     console.error("Error deleting user:", error);
-    return new Response(JSON.stringify({ error: "Failed to delete user" }), {
-      status: 500,
-    });
+    return new Response(
+      JSON.stringify({ error: "Failed to delete user" }),
+      { status: 500 }
+    );
   }
 }
