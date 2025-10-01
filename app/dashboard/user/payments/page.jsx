@@ -65,9 +65,15 @@ export default function PaymentsPage() {
           My Payments
         </h1>
         {payments.length === 0 ? (
-          <p className="text-base-content">
-            You have not made any payments yet.
-          </p>
+          <div className="flex flex-col items-center justify-center min-h-[60vh] text-center bg-base-100 pt-12">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/4076/4076500.png"
+          alt="Empty"
+          className="w-32 h-32 mb-4 opacity-70"
+        />
+        <h2 className="text-xl font-semibold text-base-content">You have not made any payments yet.</h2>
+        <p className=" mt-2 text-base-content">Go back and pay your book!</p>
+      </div>
         ) : (
           <div className="grid gap-4">
             {payments.map((payment) => (
