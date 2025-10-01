@@ -40,7 +40,7 @@ export const dashboardMenu = {
     { name: "Ban/Remove User", path: "/dashboard/admin/remove-user", icon: FaUserTimes },
     { name: "Manage Librarians", path: "/dashboard/admin/librarians", icon: FaUserShield },
     { name: "Approve Books", path: "/dashboard/admin/approve-books", icon: FaCheckCircle },
-    { name: "Reject Books", path: "/dashboard/admin/reject-books", icon: FaTimesCircle },
+    { name: "Rejected Books", path: "/dashboard/admin/reject-books", icon: FaTimesCircle },
     { name: "Reports", path: "/dashboard/admin/reports", icon: FaChartBar },
     { name: "Refunds & Disputes", path: "/dashboard/admin/refunds", icon: FaMoneyBillWave },
   ],
