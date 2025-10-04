@@ -42,6 +42,6 @@ export const dashboardMenu = {
     { name: "Approve Books", path: "/dashboard/admin/approve-books", icon: FaCheckCircle },
     { name: "Rejected Books", path: "/dashboard/admin/reject-books", icon: FaTimesCircle },
     { name: "Reports", path: "/dashboard/admin/reports", icon: FaChartBar },
-    { name: "Refunds & Disputes", path: "/dashboard/admin/refunds", icon: FaMoneyBillWave },
+    // { name: "Refunds & Disputes", path: "/dashboard/admin/refunds", icon: FaMoneyBillWave },
   ],
 };
