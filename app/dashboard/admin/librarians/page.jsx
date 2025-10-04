@@ -43,7 +43,7 @@ export default function AdminLibrariansPage() {
 
   return (
     <div className="p-4 sm:p-6 max-w-6xl mx-auto py-20">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-teal-600">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-teal-600 pt-16">
         Manage Librarians
       </h1>
 

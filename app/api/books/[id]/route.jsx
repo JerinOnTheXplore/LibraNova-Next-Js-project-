@@ -1,4 +1,4 @@
-// app/api/books/[id]/route.js
+
 import { ObjectId } from "mongodb";
 import clientPromise from "../../../../utils/mongodb";
 

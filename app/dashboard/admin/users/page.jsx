@@ -65,7 +65,7 @@ export default function AdminUsersPage() {
                 <td className="px-3 py-2">
                   <button
                     onClick={() => handleStatusToggle(u._id, u.status)}
-                    className="px-2 sm:px-3 py-1 rounded-lg text-white bg-blue-600 hover:bg-blue-700 text-sm sm:text-base"
+                    className="px-2 sm:px-3 py-1 rounded-lg text-white bg-yellow-600 hover:bg-yellow-700 text-sm sm:text-base"
                   >
                     {u.status === "active" ? "Ban" : "Activate"}
                   </button>

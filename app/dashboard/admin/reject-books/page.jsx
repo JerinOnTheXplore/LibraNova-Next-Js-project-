@@ -15,9 +15,18 @@ export default function RejectedBooksPage() {
       const data = await res.json();
       setBooks(data);
     } catch (err) {
-      console.error("❌ Failed to fetch rejected books", err);
+      console.error("Failed to fetch rejected books", err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const formatDate = (dateStr) => {
+    try {
+      const d = new Date(dateStr);
+      return isNaN(d.getTime()) ? "N/A" : d.toLocaleDateString();
+    } catch {
+      return "N/A";
     }
   };
 
@@ -25,7 +34,7 @@ export default function RejectedBooksPage() {
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-teal-600">Rejected Books</h1>
+      <h1 className="text-3xl font-bold mb-6 text-teal-600 pt-16">Rejected Books</h1>
 
       {books.length === 0 ? (
         <p className="text-center text-gray-500">No rejected books found.</p>
@@ -47,9 +56,11 @@ export default function RejectedBooksPage() {
                   <td className="px-3 py-2 text-base-content">{b.title}</td>
                   <td className="px-3 py-2 text-base-content">{b.author}</td>
                   <td className="px-3 py-2 text-base-content">{b.category}</td>
-                  <td className="px-3 py-2 text-base-content">${b.price?.$numberDouble || b.price}</td>
                   <td className="px-3 py-2 text-base-content">
-                    {new Date(b.updatedAt || b.createdAt).toLocaleDateString()}
+                    ${b.price?.$numberDouble || b.price}
+                  </td>
+                  <td className="px-3 py-2 text-base-content">
+                    {formatDate(b.updatedAt || b.createdAt)}
                   </td>
                 </tr>
               ))}

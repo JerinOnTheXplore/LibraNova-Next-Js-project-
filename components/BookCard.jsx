@@ -18,7 +18,6 @@ function PaymentForm({ book, user, onSuccess, onCancel }) {
     if (!stripe || !elements) return;
 
     try {
-      // 1. Create PaymentIntent
       const res = await fetch("/api/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -26,7 +25,6 @@ function PaymentForm({ book, user, onSuccess, onCancel }) {
       });
       const { client_secret } = await res.json();
 
-      // 2. Confirm card payment
       const card = elements.getElement(CardElement);
       const { error, paymentIntent } = await stripe.confirmCardPayment(client_secret, {
         payment_method: { card },
@@ -35,7 +33,6 @@ function PaymentForm({ book, user, onSuccess, onCancel }) {
       if (error) {
         toast.error(error.message);
       } else if (paymentIntent && paymentIntent.status === "succeeded") {
-        // Save payment locally
         const payment = {
           _id: Date.now().toString(),
           bookId: book._id,
@@ -49,7 +46,7 @@ function PaymentForm({ book, user, onSuccess, onCancel }) {
         localStorage.setItem("payments", JSON.stringify(existing));
 
         toast.success("Payment successful!");
-        onSuccess(); // close Stripe modal + show success
+        onSuccess();
       }
     } catch (err) {
       toast.error("Payment failed. Try again.");
@@ -58,7 +55,7 @@ function PaymentForm({ book, user, onSuccess, onCancel }) {
 
   return (
     <form onSubmit={handleSubmit} className="flex bg-white/20 pb-5 flex-col gap-4">
-      <CardElement className="p-3 border  text-base-content rounded-md mb-4" />
+      <CardElement className="p-3 border text-base-content rounded-md mb-4" />
       <div className="flex justify-center gap-3">
         <button
           type="button"
@@ -125,10 +122,21 @@ export default function BookCard({ book }) {
   const handleViewDetails = () => router.push(`/books/${book._id}`);
 
   return (
-    <div className="bg-base-200 rounded-lg shadow-lg overflow-hidden flex flex-col">
+    <div className="bg-base-200 rounded-lg shadow-lg overflow-hidden flex flex-col relative">
       <Toaster position="top-right" />
 
-      <img src={book.image} alt={book.title} className="w-full h-56 object-cover md:h-64 lg:h-72" />
+      {/* Rejected Badge */}
+      {book.status === "rejected" && (
+        <span className="absolute top-2 right-2 bg-teal-600 text-white text-xs font-bold px-2 py-1 rounded">
+          Rejected
+        </span>
+      )}
+
+      <img
+        src={book.image}
+        alt={book.title}
+        className="w-full h-56 object-cover md:h-64 lg:h-72"
+      />
 
       <div className="p-4 flex-1 flex flex-col justify-between">
         <div>
@@ -146,26 +154,29 @@ export default function BookCard({ book }) {
             View Details
           </button>
 
-          <div className="mt-4 flex flex-col sm:flex-row sm:flex-wrap gap-2">
-            <button
-              onClick={handleBorrow}
-              className="flex-1 min-w-[100px] px-3 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
-            >
-              Borrow
-            </button>
-            <button
-              onClick={handlePay}
-              className="flex-1 min-w-[100px] px-3 py-2 border border-teal-600 text-teal-600 rounded-lg hover:bg-teal-600 hover:text-white transition"
-            >
-              Pay
-            </button>
-            <button
-              onClick={() => setShowReviewForm(!showReviewForm)}
-              className="flex-1 min-w-[100px] px-3 py-2 border border-yellow-500 text-yellow-500 rounded-lg hover:bg-yellow-500 hover:text-white transition"
-            >
-              Review
-            </button>
-          </div>
+          {/* Borrow, Pay, Review buttons gulo hide kore jodi rejected hoy */}
+          {book.status !== "rejected" && (
+            <div className="mt-4 flex flex-col sm:flex-row sm:flex-wrap gap-2">
+              <button
+                onClick={handleBorrow}
+                className="flex-1 min-w-[100px] px-3 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
+              >
+                Borrow
+              </button>
+              <button
+                onClick={handlePay}
+                className="flex-1 min-w-[100px] px-3 py-2 border border-teal-600 text-teal-600 rounded-lg hover:bg-teal-600 hover:text-white transition"
+              >
+                Pay
+              </button>
+              <button
+                onClick={() => setShowReviewForm(!showReviewForm)}
+                className="flex-1 min-w-[100px] px-3 py-2 border border-yellow-500 text-yellow-500 rounded-lg hover:bg-yellow-500 hover:text-white transition"
+              >
+                Review
+              </button>
+            </div>
+          )}
         </div>
 
         {showReviewForm && (
@@ -184,10 +195,16 @@ export default function BookCard({ book }) {
               You have successfully borrowed <strong>{book.title}</strong>.
             </p>
             <div className="flex justify-center gap-3">
-              <button onClick={() => setShowBorrowModal(false)} className="px-4 py-2 bg-base-100 rounded-lg hover:bg-gray-300">
+              <button
+                onClick={() => setShowBorrowModal(false)}
+                className="px-4 py-2 bg-base-100 rounded-lg hover:bg-gray-300"
+              >
                 Close
               </button>
-              <button onClick={handleGoToBorrowed} className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700">
+              <button
+                onClick={handleGoToBorrowed}
+                className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"
+              >
                 Go to My Borrowed Books
               </button>
             </div>
@@ -216,12 +233,17 @@ export default function BookCard({ book }) {
       {showSuccessModal && (
         <div className="fixed inset-0 bg-base-100 bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-base-200 rounded-lg shadow-lg p-6 w-96 text-center">
-            <h2 className="text-xl font-bold text-teal-700 mb-3">🎉 Payment Successful!</h2>
+            <h2 className="text-xl font-bold text-teal-700 mb-3">
+              🎉 Payment Successful!
+            </h2>
             <p className="text-base-content mb-4">
               You have successfully paid for <strong>{book.title}</strong>.
             </p>
             <div className="flex justify-center gap-3">
-              <button onClick={handleGoToPayments} className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700">
+              <button
+                onClick={handleGoToPayments}
+                className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700"
+              >
                 Go to My Payments
               </button>
             </div>

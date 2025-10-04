@@ -43,7 +43,7 @@ export default function RemoveUserPage() {
 
   return (
     <div className="p-4 sm:p-6 max-w-6xl mx-auto">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-teal-600 mt-10">
+      <h1 className="text-2xl sm:text-3xl font-bold mb-6 text-teal-600 pt-16">
         Ban / Remove Users
       </h1>
 
