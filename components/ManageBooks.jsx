@@ -12,12 +12,13 @@ export default function ManageBooks() {
   const [loading, setLoading] = useState(true);
 
   // form states
-  const [form, setForm] = useState({ title: "", author: "", category: "", price: "" });
+  const [form, setForm] = useState({ title: "", author: "", category: "", price: "", image: "" });
   const [editingBook, setEditingBook] = useState(null);
-  const [editForm, setEditForm] = useState({ title: "", author: "", category: "", price: "" });
+  const [editForm, setEditForm] = useState({ title: "", author: "", category: "", price: "", image: "" });
 
   // modal states
   const [modal, setModal] = useState({ open: false, message: "", type: "success" });
+  const [deleteConfirm, setDeleteConfirm] = useState({ open: false, bookId: null });
 
   // fetch books
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function ManageBooks() {
 
       if (data.bookId) {
         setBooks([...books, { ...form, _id: data.bookId }]);
-        setForm({ title: "", author: "", category: "", price: "" });
+        setForm({ title: "", author: "", category: "", price: "", image: "" });
         showModal("Book added successfully!", "success");
       } else {
         showModal(data.error || "Failed to add book.", "error");
@@ -73,7 +74,9 @@ export default function ManageBooks() {
   };
 
   // delete book
-  const handleDelete = async (id) => {
+  const confirmDelete = (id) => setDeleteConfirm({ open: true, bookId: id });
+  const handleDelete = async () => {
+    const id = deleteConfirm.bookId;
     try {
       const res = await fetch(`/api/librarian/books?bookId=${id}`, { method: "DELETE" });
       const data = await res.json();
@@ -86,13 +89,15 @@ export default function ManageBooks() {
     } catch (err) {
       console.error(err);
       showModal("An unexpected error occurred.", "error");
+    } finally {
+      setDeleteConfirm({ open: false, bookId: null });
     }
   };
 
   // edit book
   const handleEdit = (book) => {
     setEditingBook(book);
-    setEditForm({ title: book.title, author: book.author, category: book.category, price: book.price });
+    setEditForm({ title: book.title, author: book.author, category: book.category, price: book.price, image: book.image || "" });
   };
 
   const handleEditSubmit = async (e) => {
@@ -124,8 +129,6 @@ export default function ManageBooks() {
 
   return (
     <div className="p-6 max-w-5xl mx-auto">
-      
-
       {/* add book form */}
       <form onSubmit={handleAdd} className="mb-6 space-y-3 bg-base-200 p-6 rounded shadow-md">
         <h2 className="text-xl font-semibold text-base-content mb-2">Add New Book</h2>
@@ -134,6 +137,7 @@ export default function ManageBooks() {
           <input type="text" name="author" placeholder="Author" value={form.author} onChange={handleChange} className="border p-2 w-full text-base-content rounded" required />
           <input type="text" name="category" placeholder="Category" value={form.category} onChange={handleChange} className="border p-2 w-full text-base-content rounded" required />
           <input type="number" name="price" placeholder="Price" value={form.price} onChange={handleChange} className="border p-2 w-full text-base-content rounded" required />
+          <input type="text" name="image" placeholder="Image URL" value={form.image} onChange={handleChange} className="border p-2 w-full text-base-content rounded md:col-span-2" />
         </div>
         <button type="submit" className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700 transition">Add Book</button>
       </form>
@@ -159,7 +163,7 @@ export default function ManageBooks() {
                 <td className="px-4 py-2 text-base-content">${book.price}</td>
                 <td className="px-4 py-2 space-x-2">
                   <button onClick={() => handleEdit(book)} className="bg-yellow-500 text-white px-2 py-1 rounded hover:bg-yellow-600 transition">Edit</button>
-                  <button onClick={() => handleDelete(book._id)} className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition">Delete</button>
+                  <button onClick={() => confirmDelete(book._id)} className="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 transition">Delete</button>
                 </td>
               </tr>
             ))}
@@ -167,31 +171,25 @@ export default function ManageBooks() {
         </table>
       </div>
 
-      {/* edit modal */}
+      {/* Edit Modal */}
       {editingBook && (
         <Transition appear show={editingBook !== null} as={Fragment}>
           <Dialog as="div" className="relative z-50" onClose={() => setEditingBook(null)}>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100"
-              leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0"
-            >
+            {/* modal backdrop */}
+            <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
               <div className="fixed inset-0 bg-base-100 bg-opacity-50" />
             </Transition.Child>
-
-            <div className="fixed inset-0 flex items-center justify-center p-4">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95"
-              >
+            {/* modal panel */}
+            <div className="fixed inset-0 flex items-center text-base-content justify-center p-4">
+              <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
                 <Dialog.Panel className="bg-base-200 p-6 rounded shadow-md w-full max-w-md">
                   <Dialog.Title className="text-lg font-bold mb-4">Edit Book</Dialog.Title>
                   <form onSubmit={handleEditSubmit} className="space-y-3">
-                    <input type="text" name="title" value={editForm.title} onChange={handleEditChange} className="border p-2 w-full rounded" required />
-                    <input type="text" name="author" value={editForm.author} onChange={handleEditChange} className="border p-2 w-full rounded" required />
-                    <input type="text" name="category" value={editForm.category} onChange={handleEditChange} className="border p-2 w-full rounded" required />
-                    <input type="number" name="price" value={editForm.price} onChange={handleEditChange} className="border p-2 w-full rounded" required />
+                    <input type="text" name="title" value={editForm.title} onChange={handleEditChange} className="border p-2 w-full rounded text-base-content" required />
+                    <input type="text" name="author" value={editForm.author} onChange={handleEditChange} className="border p-2 w-full rounded text-base-content" required />
+                    <input type="text" name="category" value={editForm.category} onChange={handleEditChange} className="border p-2 w-full rounded text-base-content" required />
+                    <input type="number" name="price" value={editForm.price} onChange={handleEditChange} className="border p-2 w-full rounded text-base-content" required />
+                    <input type="text" name="image" value={editForm.image} onChange={handleEditChange} className="border p-2 w-full rounded text-base-content" placeholder="Image URL" />
                     <div className="flex justify-end gap-2 mt-2">
                       <button type="button" onClick={() => setEditingBook(null)} className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
                       <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Save</button>
@@ -204,24 +202,36 @@ export default function ManageBooks() {
         </Transition>
       )}
 
-      {/* success/error Modal */}
-      <Transition appear show={modal.open} as={Fragment}>
-        <Dialog as="div" className="relative z-50" onClose={() => setModal({ ...modal, open: false })}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100"
-            leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0"
-          >
+      {/* Delete Confirmation Modal */}
+      <Transition appear show={deleteConfirm.open} as={Fragment}>
+        <Dialog as="div" className="relative z-50 text-base-content" onClose={() => setDeleteConfirm({ open: false, bookId: null })}>
+          <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
             <div className="fixed inset-0 bg-base-100 bg-opacity-30" />
           </Transition.Child>
-
           <div className="fixed inset-0 flex items-center justify-center p-4">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95"
-            >
-              <Dialog.Panel className={`bg-base-200 p-6 rounded shadow-md w-full max-w-sm ${modal.type === "success" ? "border-l-4 border-green-500" : "border-l-4 border-red-500"}`}>
+            <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
+              <Dialog.Panel className="bg-base-200 p-6 rounded shadow-md w-full max-w-sm border-l-4 border-red-500">
+                <Dialog.Title className="text-lg font-bold mb-4">Confirm Delete</Dialog.Title>
+                <p>Are you sure you want to delete this book?</p>
+                <div className="flex justify-end gap-2 mt-4">
+                  <button onClick={() => setDeleteConfirm({ open: false, bookId: null })} className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">No</button>
+                  <button onClick={handleDelete} className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Yes</button>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
+          </div>
+        </Dialog>
+      </Transition>
+
+      {/* Success/Error Modal */}
+      <Transition appear show={modal.open} as={Fragment}>
+        <Dialog as="div" className="relative z-50" onClose={() => setModal({ ...modal, open: false })}>
+          <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
+            <div className="fixed inset-0 bg-base-100 bg-opacity-30" />
+          </Transition.Child>
+          <div className="fixed inset-0 flex items-center justify-center p-4">
+            <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0 scale-95" enterTo="opacity-100 scale-100" leave="ease-in duration-200" leaveFrom="opacity-100 scale-100" leaveTo="opacity-0 scale-95">
+              <Dialog.Panel className={`bg-base-200 p-6 rounded text-base-content shadow-md w-full max-w-sm ${modal.type === "success" ? "border-l-4 border-green-500" : "border-l-4 border-red-500"}`}>
                 <Dialog.Title className="text-lg font-bold mb-2">{modal.type === "success" ? "Success!" : "Error!"}</Dialog.Title>
                 <p>{modal.message}</p>
                 <div className="flex justify-end mt-4">
