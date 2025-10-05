@@ -22,8 +22,8 @@ export const dashboardMenu = {
     { name: "Borrowed Books", path: "/dashboard/user/borrowed", icon: FaBook },
     { name: "Payment History", path: "/dashboard/user/payments", icon: FaCreditCard },
     { name: "Read Books (PDF)", path: "/dashboard/user/reader", icon: FaFilePdf },
-    { name: "Reminders", path: "/dashboard/user/reminders", icon: FaBell },
-    { name: "Extend Rental", path: "/dashboard/user/extend", icon: FaClock },
+    // { name: "Reminders", path: "/dashboard/user/reminders", icon: FaBell },
+    // { name: "Extend Rental", path: "/dashboard/user/extend", icon: FaClock },
     { name: "My Reviews", path: "/dashboard/user/reviews", icon: FaStar },
   ],
 
