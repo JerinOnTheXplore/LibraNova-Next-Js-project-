@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.9",
     "@react-pdf/renderer": "^4.3.1",
     "@stripe/react-stripe-js": "^4.0.2",
     "@stripe/stripe-js": "^7.9.0",
