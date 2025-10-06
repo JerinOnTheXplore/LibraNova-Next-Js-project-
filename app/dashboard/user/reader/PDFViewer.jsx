@@ -10,7 +10,7 @@ export default function PDFViewer({ fileUrl }) {
   const onDocumentLoadSuccess = ({ numPages }) => setNumPages(numPages);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col text-base-content items-center">
       <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
         {Array.from(new Array(numPages), (_, index) => (
           <Page key={`page_${index + 1}`} pageNumber={index + 1} />

@@ -66,10 +66,7 @@ export default function Navbar() {
         <div className="hidden lg:flex mx-auto max-w-4xl py-3 px-5 bg-teal-700 text-white items-center gap-4 rounded-full">
           <LinkItem href="/" label="Home"/>
           <DropdownMenu title="Books" items={booksDropdownItems} />
-          <LinkItem href="/dashboard/dashboardContent" label="Dashboard" />
-          <LinkItem href="/my-library" label="My Library"/>
-          <LinkItem href="/rentals" label="Rentals"/>
-          <LinkItem href="/pricing" label="Pricing"/>
+          {user && <LinkItem href="/dashboard/dashboardContent" label="Dashboard" />}
           <LinkItem href="/blog" label="Blog"/>
           <LinkItem href="/about" label="About"/>
         </div>
@@ -152,13 +149,10 @@ export default function Navbar() {
                   <FaTimes className="w-6 h-6 text-base-content "/>
                 </button>
               </div>
-              <div className="flex flex-col gap-4 bg-base-200 text-base-content px-2">
+              <div className="flex flex-col gap-4 bg-base-200 text-base-content px-2 pb-4">
                 <LinkItemMobile href="/" label="Home" />
                 <DropdownMenuMobile title="Books" items={booksDropdownItems} />
-                <LinkItemMobile href="/dashboard/dashboardContent" label="Dashboard" />
-                <LinkItemMobile href="/my-library" label="My Library" />
-                <LinkItemMobile href="/rentals" label="Rentals" />
-                <LinkItemMobile href="/pricing" label="Pricing" />
+                {user && <LinkItemMobile href="/dashboard/dashboardContent" label="Dashboard" />}
                 <LinkItemMobile href="/blog" label="Blog" />
                 <LinkItemMobile href="/about" label="About" />
                 {!user && <LinkItemMobile href="/login" label="Login" />}

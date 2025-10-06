@@ -29,9 +29,9 @@ export const dashboardMenu = {
 
   librarian: [
     { name: "Manage Books", path: "/dashboard/librarian/books", icon: FaBook },
-    { name: "Add Book", path: "/dashboard/librarian/add-book", icon: FaPlusCircle },
-    { name: "Update Book", path: "/dashboard/librarian/update-book", icon: FaEdit },
-    { name: "Remove Book", path: "/dashboard/librarian/remove-book", icon: FaTrash },
+    // { name: "Add Book", path: "/dashboard/librarian/add-book", icon: FaPlusCircle },
+    // { name: "Update Book", path: "/dashboard/librarian/update-book", icon: FaEdit },
+    // { name: "Remove Book", path: "/dashboard/librarian/remove-book", icon: FaTrash },
     { name: "Statistics", path: "/dashboard/librarian/stats", icon: FaChartBar },
   ],
 

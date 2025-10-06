@@ -1,92 +1,76 @@
 "use client";
 
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { FaBookOpen, FaUserPlus } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { useTheme } from "@/context/ThemeContext";
 
-export default function Hero() {
+const images = [
+  "https://i.ibb.co.com/d0z0Zhhq/book3.jpg",
+  "https://i.ibb.co.com/chLc5RG6/book.jpg",
+  "https://i.ibb.co.com/BVGVf63d/book1.jpg",
+];
+
+const Hero = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const { darkMode } = useTheme();
+  // Auto-slide
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative w-full h-screen bg-gradient-to-r from-teal-600 to-teal-500 overflow-hidden">
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 flex flex-col justify-center h-full">
-        {/* Heading */}
-        <motion.h1
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
+    <div className="relative w-full h-[75vh] overflow-hidden rounded-2xl shadow-xl">
+      <AnimatePresence>
+        <motion.img
+          key={images[currentIndex]}
+          src={images[currentIndex]}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
-          className="text-5xl md:text-6xl font-extrabold text-white drop-shadow-lg"
+          alt="Library Banner"
+          className="absolute w-full h-full object-cover"
+        />
+      </AnimatePresence>
+
+      {/* Overlay color changes with theme */}
+      <div
+        className="absolute inset-0 transition-colors duration-300"
+        style={{
+          backgroundColor: darkMode ? "rgba(0,0,0,0.4)" : "rgba(0,0,0,0.08)",
+        }}
+      ></div>
+
+      {/* Text content */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6">
+        <motion.h1
+          className="text-4xl md:text-5xl font-bold text-teal-600 drop-shadow-lg mb-4"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
         >
-          Welcome to LibraNova
+          Discover & Rent Your Favorite Books Anytime 📚
         </motion.h1>
+        <p className="text-white text-lg md:text-xl mb-6 max-w-2xl">
+          Browse through thousands of titles across all genres — read, review, and enjoy!
+        </p>
 
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="mt-6 text-lg md:text-xl text-white/90 max-w-xl drop-shadow-md"
-        >
-          Explore, borrow, and read your favorite books digitally. Join our
-          library and start your reading journey today.
-        </motion.p>
-
-        {/* Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1 }}
-          className="mt-8 flex flex-wrap gap-4"
-        >
-          <Link
-            href="/books"
-            className="flex items-center gap-2 bg-white text-teal-700 font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-white/90 transition-all"
+        <Link href="/books">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-teal-600 text-white px-6 py-3 rounded-lg font-semibold shadow-md hover:bg-teal-700 transition-colors"
           >
-            <FaBookOpen /> Browse Books
-          </Link>
-
-          <Link
-            href="/register"
-            className="flex items-center gap-2 border-2 border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white/20 transition-all"
-          >
-            <FaUserPlus /> Register
-          </Link>
-        </motion.div>
+            Browse Books
+          </motion.button>
+        </Link>
       </div>
-
-      {/* Floating Book Images on Right - Stair Layout */}
-      <div className="absolute right-10 md:right-36 top-120 lg:top-1/6 flex md:flex lg:flex-col items-end gap-8 z-0">
-        <FloatingImage src="/images/book3.png" size={220} delay={0} />
-        <FloatingImage src="/images/book2.png" size={220}  delay={0.3} />
-        <FloatingImage src="/images/book1.png" size={220} delay={0.6} />
-      </div>
-
-      {/* Optional Bottom Decorative Wave */}
-      <svg className="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 320">
-        <path
-          fill="#ffffff10"
-          fillOpacity="0.3"
-          d="M0,64L48,80C96,96,192,128,288,144C384,160,480,160,576,138.7C672,117,768,75,864,69.3C960,64,1056,96,1152,112C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-        ></path>
-      </svg>
-    </section>
+    </div>
   );
-}
+};
 
-/* ---------- FloatingImage Component ---------- */
-function FloatingImage({ src, size = 120, delay = 0 }) {
-  return (
-    <motion.img
-      src={src}
-      alt="Decorative Book"
-      className="rounded-lg shadow-xl"
-      style={{ width: size, height: size, objectFit: "cover" }}
-      animate={{ y: [0, -20, 0] }}
-      transition={{
-        duration: 3,
-        repeat: Infinity,
-        repeatType: "loop",
-        delay: delay,
-      }}
-    />
-  );
-}
+export default Hero;
