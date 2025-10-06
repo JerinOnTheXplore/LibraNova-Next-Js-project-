@@ -55,7 +55,7 @@ const Hero = () => {
         >
           Discover & Rent Your Favorite Books Anytime 📚
         </motion.h1>
-        <p className="text-white text-lg md:text-xl mb-6 max-w-2xl">
+        <p className="text-stone-50 text-lg md:text-xl mb-6 max-w-2xl">
           Browse through thousands of titles across all genres — read, review, and enjoy!
         </p>
 

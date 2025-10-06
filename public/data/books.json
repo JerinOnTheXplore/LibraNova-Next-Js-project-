@@ -1,0 +1,147 @@
+[
+  {
+    "title": "JavaScript: The Good Parts",
+    "author": "Douglas Crockford",
+    "category": "Technology",
+    "description": "A deep dive into the core concepts of JavaScript and best practices.",
+    "image": "https://m.media-amazon.com/images/I/81kqrwS1nNL.jpg",
+    "price": 21.99
+  },
+  {
+    "title": "You Don't Know JS",
+    "author": "Kyle Simpson",
+    "category": "Technology",
+    "description": "A detailed series exploring the intricacies of JavaScript.",
+    "image": "https://m.media-amazon.com/images/I/71kDWG3J9wL.jpg",
+    "price": 27.99
+  },
+  {
+    "title": "The Mythical Man-Month",
+    "author": "Frederick P. Brooks Jr.",
+    "category": "Technology",
+    "description": "Essays on software engineering and project management challenges.",
+    "image": "https://m.media-amazon.com/images/I/71Vkg0v9m9L.jpg",
+    "price": 18.49
+  },
+  {
+    "title": "Code Complete",
+    "author": "Steve McConnell",
+    "category": "Technology",
+    "description": "A comprehensive guide to software construction techniques.",
+    "image": "https://m.media-amazon.com/images/I/91asIC1fRwL.jpg",
+    "price": 32.99
+  },
+  {
+    "title": "Artificial Intelligence: A Modern Approach",
+    "author": "Stuart Russell, Peter Norvig",
+    "category": "Technology",
+    "description": "The leading textbook in AI, covering theory and real-world applications.",
+    "image": "https://m.media-amazon.com/images/I/81ZxkT9LPzL.jpg",
+    "price": 54.99
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "category": "Novel",
+    "price": 5,
+    "image": "https://m.media-amazon.com/images/I/81af+MCATTL.jpg"
+  },
+  {
+    "title": "1984",
+    "author": "George Orwell",
+    "category": "Novel",
+    "price": 6,
+    "image": "https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg"
+  },
+  {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "category": "Novel",
+    "price": 5,
+    "image": "https://m.media-amazon.com/images/I/81gepf1eMqL.jpg"
+  },
+  {
+    "title": "A Brief History of Time",
+    "author": "Stephen Hawking",
+    "category": "Science",
+    "price": 7,
+    "image": "https://m.media-amazon.com/images/I/81t2CVWEsUL.jpg"
+  },
+  {
+    "title": "The Selfish Gene",
+    "author": "Richard Dawkins",
+    "category": "Science",
+    "price": 6,
+    "image": "https://m.media-amazon.com/images/I/91bYsX41DVL.jpg"
+  },
+  {
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "category": "Science",
+    "price": 8,
+    "image": "https://m.media-amazon.com/images/I/713jIoMO3UL.jpg"
+  },
+  {
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "category": "Technology",
+    "price": 10,
+    "image": "https://m.media-amazon.com/images/I/41xShlnTZTL.jpg"
+  },
+  {
+    "title": "The Pragmatic Programmer",
+    "author": "Andrew Hunt & David Thomas",
+    "category": "Technology",
+    "price": 9,
+    "image": "https://m.media-amazon.com/images/I/518FqJvR9aL.jpg"
+  },
+  {
+    "title": "Introduction to Algorithms",
+    "author": "Thomas H. Cormen",
+    "category": "Technology",
+    "price": 12,
+    "image": "https://m.media-amazon.com/images/I/41SN-VGVbWL._SX376_BO1,204,203,200_.jpg"
+  },
+  {
+    "title": "Pride and Prejudice",
+    "author": "Jane Austen",
+    "category": "Novel",
+    "price": 5,
+    "image": "https://m.media-amazon.com/images/I/81OthjkJBuL.jpg"
+  },
+  {
+    "title": "Brave New World",
+    "author": "Aldous Huxley",
+    "category": "Novel",
+    "price": 6,
+    "image": "https://m.media-amazon.com/images/I/71rpa1-0S+L.jpg"
+  },
+  {
+    "title": "The Elegant Universe",
+    "author": "Brian Greene",
+    "category": "Science",
+    "price": 7,
+    "image": "https://m.media-amazon.com/images/I/81En-5JxTTL.jpg"
+  },
+  {
+    "title": "Artificial Intelligence: A Modern Approach",
+    "author": "Stuart Russell & Peter Norvig",
+    "category": "Technology",
+    "price": 11,
+    "image": "https://m.media-amazon.com/images/I/81ZxkT9LPzL.jpg"
+  },
+  {
+    "title": "The Catcher in the Rye",
+    "author": "J.D. Salinger",
+    "category": "Novel",
+    "price": 5,
+    "image": "https://m.media-amazon.com/images/I/81OthjkJBuL.jpg"
+  },
+  {
+    "title": "Deep Work",
+    "author": "Cal Newport",
+    "category": "Technology",
+    "price": 9,
+    "image": "https://m.media-amazon.com/images/I/71g2ednj0JL.jpg"
+  }
+]
