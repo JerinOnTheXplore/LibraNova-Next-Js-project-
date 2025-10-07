@@ -52,7 +52,7 @@ const FeaturedBooks = () => {
         >
           {books.map((book, idx) => (
             <div key={book.title + idx} className="px-2 py-12">
-              <div className="bg-base-300 rounded-xl shadow-lg overflow-hidden cursor-pointer flex flex-col h-[450px]">
+              <div className="bg-base-300 rounded shadow-lg overflow-hidden cursor-pointer flex flex-col h-[450px]">
                 {/* Image */}
                 <div className="overflow-hidden h-64">
                   <img

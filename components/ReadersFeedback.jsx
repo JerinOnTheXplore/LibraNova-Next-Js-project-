@@ -51,7 +51,7 @@ const ReadersFeedback = () => {
       >
         {readers.map((reader) => (
           <div key={reader.id} className="p-2">
-            <div className="bg-base-300 border-t-2 border-teal-600 rounded-xl shadow-lg p-6 flex flex-col justify-between h-[380px]">
+            <div className="bg-base-300 border-t-2 border-teal-600 rounded shadow-lg p-6 flex flex-col justify-between h-[380px]">
               
               {/* Feedback */}
               <p className="text-base-content italic leading-relaxed mb-6 line-clamp-5">

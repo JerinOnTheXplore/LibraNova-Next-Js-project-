@@ -1,6 +1,6 @@
 // next.config.js
 module.exports = {
   images: {
-    domains: ["m.media-amazon.com"], // Amazon image allow
+    domains: ["m.media-amazon.com","images.unsplash.com"],
   },
 };

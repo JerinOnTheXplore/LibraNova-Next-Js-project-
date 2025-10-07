@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import ReadersFeedback from "@/components/ReadersFeedback";
 import StatsSection from "@/components/StatsSection";
 import TopCategories from "@/components/TopCategories";
+import UpcomingEvents from "@/components/UpcomingEvents";
 import Image from "next/image";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <ReadersFeedback></ReadersFeedback>
       <FeaturedAuthors></FeaturedAuthors>
       <StatsSection></StatsSection>
+      <UpcomingEvents></UpcomingEvents>
     </main>
   );
 }
