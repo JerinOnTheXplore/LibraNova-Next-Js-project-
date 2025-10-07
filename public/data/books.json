@@ -8,28 +8,19 @@
     "price": 21.99
   },
   {
-    "title": "You Don't Know JS",
-    "author": "Kyle Simpson",
-    "category": "Technology",
-    "description": "A detailed series exploring the intricacies of JavaScript.",
-    "image": "https://m.media-amazon.com/images/I/71kDWG3J9wL.jpg",
-    "price": 27.99
-  },
-  {
-    "title": "The Mythical Man-Month",
-    "author": "Frederick P. Brooks Jr.",
-    "category": "Technology",
-    "description": "Essays on software engineering and project management challenges.",
-    "image": "https://m.media-amazon.com/images/I/71Vkg0v9m9L.jpg",
-    "price": 18.49
-  },
-  {
     "title": "Code Complete",
     "author": "Steve McConnell",
     "category": "Technology",
     "description": "A comprehensive guide to software construction techniques.",
     "image": "https://m.media-amazon.com/images/I/91asIC1fRwL.jpg",
     "price": 32.99
+  },
+  {
+    "title": "The Great Gatsby",
+    "author": "F. Scott Fitzgerald",
+    "category": "Novel",
+    "price": 5,
+    "image": "https://m.media-amazon.com/images/I/81af+MCATTL.jpg"
   },
   {
     "title": "Artificial Intelligence: A Modern Approach",
@@ -40,25 +31,11 @@
     "price": 54.99
   },
   {
-    "title": "The Great Gatsby",
-    "author": "F. Scott Fitzgerald",
-    "category": "Novel",
-    "price": 5,
-    "image": "https://m.media-amazon.com/images/I/81af+MCATTL.jpg"
-  },
-  {
     "title": "1984",
     "author": "George Orwell",
     "category": "Novel",
     "price": 6,
     "image": "https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg"
-  },
-  {
-    "title": "To Kill a Mockingbird",
-    "author": "Harper Lee",
-    "category": "Novel",
-    "price": 5,
-    "image": "https://m.media-amazon.com/images/I/81gepf1eMqL.jpg"
   },
   {
     "title": "A Brief History of Time",
@@ -68,6 +45,13 @@
     "image": "https://m.media-amazon.com/images/I/81t2CVWEsUL.jpg"
   },
   {
+    "title": "To Kill a Mockingbird",
+    "author": "Harper Lee",
+    "category": "Novel",
+    "price": 5,
+    "image": "https://m.media-amazon.com/images/I/81gepf1eMqL.jpg"
+  },
+  {
     "title": "The Selfish Gene",
     "author": "Richard Dawkins",
     "category": "Science",
@@ -75,18 +59,18 @@
     "image": "https://m.media-amazon.com/images/I/91bYsX41DVL.jpg"
   },
   {
-    "title": "Sapiens: A Brief History of Humankind",
-    "author": "Yuval Noah Harari",
-    "category": "Science",
-    "price": 8,
-    "image": "https://m.media-amazon.com/images/I/713jIoMO3UL.jpg"
-  },
-  {
     "title": "Clean Code",
     "author": "Robert C. Martin",
     "category": "Technology",
     "price": 10,
     "image": "https://m.media-amazon.com/images/I/41xShlnTZTL.jpg"
+  },
+  {
+    "title": "Sapiens: A Brief History of Humankind",
+    "author": "Yuval Noah Harari",
+    "category": "Science",
+    "price": 8,
+    "image": "https://m.media-amazon.com/images/I/713jIoMO3UL.jpg"
   },
   {
     "title": "The Pragmatic Programmer",
@@ -110,11 +94,27 @@
     "image": "https://m.media-amazon.com/images/I/81OthjkJBuL.jpg"
   },
   {
+    "title": "The Mythical Man-Month",
+    "author": "Frederick P. Brooks Jr.",
+    "category": "Technology",
+    "description": "Essays on software engineering and project management challenges.",
+    "image": "https://m.media-amazon.com/images/I/71Vkg0v9m9L.jpg",
+    "price": 18.49
+  },
+  {
     "title": "Brave New World",
     "author": "Aldous Huxley",
     "category": "Novel",
     "price": 6,
     "image": "https://m.media-amazon.com/images/I/71rpa1-0S+L.jpg"
+  },
+  {
+    "title": "You Don't Know JS",
+    "author": "Kyle Simpson",
+    "category": "Technology",
+    "description": "A detailed series exploring the intricacies of JavaScript.",
+    "image": "https://m.media-amazon.com/images/I/71kDWG3J9wL.jpg",
+    "price": 27.99
   },
   {
     "title": "The Elegant Universe",

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-let borrowedBooks = []; // temp store, replace with DB
+let borrowedBooks = []; 
 
 export async function POST(request) {
   try {

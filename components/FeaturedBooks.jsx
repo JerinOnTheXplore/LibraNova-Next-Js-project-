@@ -40,7 +40,7 @@ const FeaturedBooks = () => {
         Featured Books
       </h2>
 
-      <div className="overflow-hidden">
+      <div className="py-12 overflow-hidden">
         <Slider
           {...settings}
           className="relative"

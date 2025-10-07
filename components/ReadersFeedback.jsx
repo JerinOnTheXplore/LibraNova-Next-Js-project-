@@ -34,12 +34,12 @@ const ReadersFeedback = () => {
 
   return (
     <div className="bg-base-100 text-base-content">
-        <section className="py-6 px-8 md:px-12 lg:px-16 max-w-7xl mx-auto">
+        <section className="py-12 px-8 md:px-12 lg:px-16 max-w-7xl mx-auto">
       <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center text-teal-600">
         What Our Readers Say
       </h2>
 
-      <div className="overflow-hidden pt-6">
+      <div className="overflow-hidden pt-12">
         <Slider
         {...settings}
         className="relative text-shadow-base-content"
