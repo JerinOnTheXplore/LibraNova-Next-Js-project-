@@ -1,3 +1,4 @@
+import FeaturedAuthors from "@/components/FeaturedAuthors";
 import FeaturedBooks from "@/components/FeaturedBooks";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
@@ -13,6 +14,7 @@ export default function Home() {
       <FeaturedBooks></FeaturedBooks>
       <TopCategories></TopCategories>
       <ReadersFeedback></ReadersFeedback>
+      <FeaturedAuthors></FeaturedAuthors>
     </main>
   );
 }

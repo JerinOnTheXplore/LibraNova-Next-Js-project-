@@ -115,12 +115,12 @@ const TopCategories = () => {
 
             <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center">
-                <h4 className="text-lg text-base-content font-semibold">
-                  Title: {selectedBook.title}
+                <h4 className="text-xl text-base-content font-normal">
+                  <span className="font-semibold">Title:</span><br></br> {selectedBook.title}
                 </h4>
                 <span className="text-base-content font-medium">Page: 120</span>
               </div>
-              <h5 className="text-base-content">Author: {selectedBook.author}</h5>
+              <h5 className="text-base-content font-semibold">Author:<br/> <span className="font-normal">{selectedBook.author}</span></h5>
               <p className="text-base-content mt-2">
                 {selectedBook.description ||
                   "No description available for this category."}
