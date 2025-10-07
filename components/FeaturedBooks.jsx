@@ -20,23 +20,23 @@ const FeaturedBooks = () => {
     dots: true,
     infinite: true,
     speed: 800,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
     arrows: false, // small device friendly
     responsive: [
-      { breakpoint: 1280, settings: { slidesToShow: 4 } },
-      { breakpoint: 1024, settings: { slidesToShow: 3 } },
+      { breakpoint: 1280, settings: { slidesToShow: 5 } },
+      { breakpoint: 1024, settings: { slidesToShow: 4 } },
       { breakpoint: 768, settings: { slidesToShow: 2 } },
-      { breakpoint: 640, settings: { slidesToShow: 1 } },
+      { breakpoint: 640, settings: { slidesToShow: 2 } },
     ],
   };
 
   return (
     <div className="bg-base-100">
         <section className="py-16 md:py-20 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
-      <h2 className="text-3xl md:text-4xl text-teal-600 font-bold mb-8 text-center">
+      <h2 className="text-3xl md:text-4xl text-teal-600 font-bold text-center">
         Featured Books
       </h2>
 

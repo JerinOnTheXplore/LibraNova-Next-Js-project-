@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Ayesha Rahman",
+    "profession": "Student",
+    "image": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=600&h=600&fit=crop",
+    "feedback": "I love the variety of books available here! As a student, I’m constantly searching for both academic and leisure reads, and this platform never disappoints. The interface is clean, the navigation is effortless, and the recommendations truly reflect my reading habits. I’ve discovered so many new authors that I probably wouldn’t have found elsewhere."
+  },
+  {
+    "id": 2,
+    "name": "Mahmud Hasan",
+    "profession": "Software Engineer",
+    "image": "https://images.unsplash.com/photo-1595152772835-219674b2a8a6?w=600&h=600&fit=crop",
+    "feedback": "A perfect place for readers who value both quality and experience. As a developer, I appreciate how smooth and responsive the design feels. The browsing speed is excellent, and the categorization helps me quickly find books related to tech, creativity, or fiction. The personal touch in recommendations makes this my go-to reading hub."
+  },
+  {
+    "id": 3,
+    "name": "Nusrat Jahan",
+    "profession": "Teacher",
+    "image": "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600&h=600&fit=crop",
+    "feedback": "I’ve been using this platform for several months, and I can confidently say it has transformed my reading experience. The curated lists are thoughtfully arranged, saving me hours of scrolling. I often recommend this site to my students as it motivates them to explore books beyond their academic curriculum."
+  },
+  {
+    "id": 4,
+    "name": "Imran Hossain",
+    "profession": "Doctor",
+    "image": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=600&h=600&fit=crop",
+    "feedback": "This platform rekindled my love for reading! Between long shifts and busy schedules, I rarely had time to browse bookstores, but this site made it so much easier. The detailed summaries and genuine reader reviews help me choose the right books every time. It’s truly a companion for book lovers with a busy life."
+  },
+  {
+    "id": 5,
+    "name": "Fatima Akter",
+    "profession": "Graphic Designer",
+    "image": "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=600&h=600&fit=crop",
+    "feedback": "The design and responsiveness of this platform are outstanding! The color scheme, typography, and layout make reading reviews and browsing through genres a delight. I really enjoy how the website feels modern yet cozy — it encourages me to come back again and again just to explore more books."
+  },
+  {
+    "id": 6,
+    "name": "Samiul Islam",
+    "profession": "Freelancer",
+    "image": "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=600&h=600&fit=crop",
+    "feedback": "Every time I visit, I find something fresh to read — whether it’s a trending novel, a self-help title, or an indie author’s work. The seamless slider, helpful filters, and real user feedback make this a truly reader-focused space. It feels like having a digital library that always knows what I need next."
+  },
+  {
+    "id": 7,
+    "name": "Tania Ahmed",
+    "profession": "Writer",
+    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&h=600&fit=crop",
+    "feedback": "As a writer, I’m deeply impressed by the thoughtful book selections featured here. The platform not only highlights bestsellers but also introduces hidden literary gems that deserve recognition. It’s refreshing to see a space that values quality writing and connects readers through shared passion for storytelling."
+  },
+  {
+    "id": 8,
+    "name": "Rakibul Karim",
+    "profession": "University Lecturer",
+    "image": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&h=600&fit=crop",
+    "feedback": "An excellent reading community for lifelong learners! The structure of this platform, with its easy navigation and meaningful categorization, encourages readers to explore knowledge in the best possible way. I often recommend it to my students because it blends entertainment and education perfectly."
+  }
+]
