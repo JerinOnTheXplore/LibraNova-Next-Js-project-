@@ -73,13 +73,13 @@ const FeaturedAuthors = () => {
   return (
     <div className="bg-base-100">
         <section className="py-16">
-      <h2 className="text-3xl font-bold text-base-content text-center mb-8">
+      <h2 className="text-3xl font-bold text-teal-600 text-center mb-8">
         Featured Author of the Month
       </h2>
 
-      <div className="flex flex-col lg:flex-row py-16">
+      <div className="flex flex-col lg:flex-row pt-16">
         {/* Left Side: Categories */}
-        <div className="w-full lg:w-2/5 bg-teal-600  p-6 py-12 flex flex-col gap-6 ">
+        <div className="w-full lg:w-2/5 bg-teal-800  p-6 py-12 flex flex-col gap-6 ">
           {categories.map((cat) => (
             <button
               key={cat}
