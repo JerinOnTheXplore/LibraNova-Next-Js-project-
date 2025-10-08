@@ -12,14 +12,15 @@ export default function BooksPage() {
 
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1); 
-  const perPage = 8; // 8 books per page
+  const [page, setPage] = useState(1);
+  const perPage = 8;
 
+  // AOS init
   useEffect(() => {
-    // initialize AOS
-    AOS.init({ duration: 1000, once: false });
+    AOS.init({ duration: 800, once: false });
   }, []);
 
+  // Fetch books
   useEffect(() => {
     const fetchBooks = async () => {
       setLoading(true);
@@ -30,11 +31,10 @@ export default function BooksPage() {
         const data = await res.json();
         setBooks(data);
 
-        // reset page on category change
         const savedPage = localStorage.getItem(`booksPage_${category || "all"}`);
         setPage(savedPage ? parseInt(savedPage) : 1);
       } catch (err) {
-        console.error(err);
+        console.error("❌ Failed to fetch books:", err);
       } finally {
         setLoading(false);
       }
@@ -43,8 +43,9 @@ export default function BooksPage() {
     fetchBooks();
   }, [category]);
 
+  // Pagination logic
   const totalPages = Math.ceil(books.length / perPage);
-  const currentBooks = books.slice((page - 1) * perPage, page * perPage);
+  const displayedBooks = books.slice((page - 1) * perPage, page * perPage);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
@@ -68,48 +69,48 @@ export default function BooksPage() {
           <div className="mt-4 w-24 h-1 bg-teal-600 mx-auto rounded-full"></div>
         </div>
 
-        {/* loading State */}
+        {/* Loading Spinner */}
         {loading && (
           <div className="flex justify-center items-center mt-16">
-            <div className="relative w-24 h-24 animate-spin">
-              {/* outer Book Circle */}
+            <div className="relative w-20 h-20 animate-spin">
+              {/* outer ring */}
               <div className="absolute inset-0 border-4 border-teal-600 rounded-full border-t-transparent"></div>
-              {/* inner Book Icon Circle */}
-              <div className="absolute inset-4 border-4 border-teal-400 rounded-full border-b-transparent"></div>
-              {/* center Dot */}
-              <div className="absolute inset-8 w-8 h-8 bg-teal-600 rounded-full"></div>
+              {/* inner ring */}
+              <div className="absolute inset-3 border-4 border-teal-400 rounded-full border-b-transparent"></div>
+              {/* center dot */}
+              <div className="absolute inset-7 bg-teal-600 rounded-full"></div>
             </div>
           </div>
         )}
 
-        {/* no books */}
+        {/* No Books */}
         {!loading && books.length === 0 && (
           <p className="text-center text-gray-600 mt-10">
             No books found in this category.
           </p>
         )}
 
-        {/* book grid */}
-        {!loading && currentBooks.length > 0 && (
+        {/* Book Grid */}
+        {!loading && displayedBooks.length > 0 && (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {currentBooks.map((book, idx) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+              {displayedBooks.map((book, idx) => (
                 <div key={book._id || idx} data-aos="fade-up">
                   <BookCard book={book} />
                 </div>
               ))}
             </div>
 
-            {/* pagination */}
+            {/* Pagination */}
             {totalPages > 1 && (
               <div className="flex justify-center gap-3 mt-10 flex-wrap">
                 {Array.from({ length: totalPages }).map((_, i) => (
                   <button
                     key={i}
                     onClick={() => handlePageChange(i + 1)}
-                    className={`px-4 py-2 rounded-lg border ${
+                    className={`px-4 py-2 rounded-lg border transition ${
                       page === i + 1
-                        ? "bg-teal-600 text-white"
+                        ? "bg-teal-600 text-white shadow-md"
                         : "bg-white text-gray-700 hover:bg-gray-100"
                     }`}
                   >

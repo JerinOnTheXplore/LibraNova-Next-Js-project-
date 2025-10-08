@@ -2,6 +2,7 @@
 
 import FeaturedAuthors from "@/components/FeaturedAuthors";
 import FeaturedBooks from "@/components/FeaturedBooks";
+import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
