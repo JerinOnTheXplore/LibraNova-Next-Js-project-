@@ -126,10 +126,10 @@ const BlogDetails = () => {
         {/* Comments */}
         <div className="mb-8">
           <h2 className="text-xl font-semibold text-base-content mb-4">Comments</h2>
-          <div className="bg-base-300 p-4 rounded mb-3">
+          <div className="bg-base-300 text-base-content p-4 rounded mb-3">
             <p><strong>Sarah:</strong> Great insights! Really enjoyed this read.</p>
           </div>
-          <div className="bg-base-300 p-4 rounded mb-3">
+          <div className="bg-base-300 p-4 text-base-content rounded mb-3">
             <p><strong>David:</strong> Looking forward to more such articles!</p>
           </div>
           {filteredComments.map((c, i) => (
@@ -184,14 +184,14 @@ const BlogDetails = () => {
 
         {/* Recent Posts */}
         <div>
-          <h3 className="text-lg font-semibold mb-3">Recent Posts</h3>
+          <h3 className="text-lg font-semibold text-base-content mb-3">Recent Posts</h3>
           <div className="flex flex-col gap-3">
             {(filteredBlogs.length > 0 ? filteredBlogs.slice(0, 3) : blogs.slice(0, 3)).map((b) => (
               <div key={b.id} className="flex gap-3 items-center cursor-pointer" onClick={() => setCurrentBlog(b)}>
                 <img src={b.images[0]} alt="" className="w-20 h-16 rounded object-cover" />
                 <div>
-                  <p className="text-xs text-gray-500">{b.date}</p>
-                  <p className="text-sm font-medium">{b.title}</p>
+                  <p className="text-xs text-base-content">{b.date}</p>
+                  <p className="text-sm font-medium text-base-content">{b.title}</p>
                 </div>
               </div>
             ))}

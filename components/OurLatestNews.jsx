@@ -33,7 +33,7 @@ const OurLatestNews = () => {
     <div className="bg-base-100">
      <section className="py-16 max-w-6xl mx-auto">
       <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold text-base-content">Our Latest News</h2>
+        <h2 className="text-3xl font-bold text-teal-600">Our Latest News</h2>
         <p className="text-base-content mt-2">
           Stay updated with our latest insights, events, and literary discussions.
         </p>

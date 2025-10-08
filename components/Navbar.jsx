@@ -67,7 +67,7 @@ export default function Navbar() {
           <LinkItem href="/" label="Home"/>
           <DropdownMenu title="Books" items={booksDropdownItems} />
           {user && <LinkItem href="/dashboard/dashboardContent" label="Dashboard" />}
-          <LinkItem href="/blog" label="Blog"/>
+          <LinkItem href="/blogs" label="Blog"/>
           <LinkItem href="/about" label="About"/>
         </div>
 
@@ -153,7 +153,7 @@ export default function Navbar() {
                 <LinkItemMobile href="/" label="Home" />
                 <DropdownMenuMobile title="Books" items={booksDropdownItems} />
                 {user && <LinkItemMobile href="/dashboard/dashboardContent" label="Dashboard" />}
-                <LinkItemMobile href="/blog" label="Blog" />
+                <LinkItemMobile href="/blogs" label="Blog" />
                 <LinkItemMobile href="/about" label="About" />
                 {!user && <LinkItemMobile href="/login" label="Login" />}
                 {!user && <LinkItemMobile href="/register" label="Register" />}
