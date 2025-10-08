@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 // react-icons
@@ -8,6 +8,13 @@ import { dashboardMenu } from "@/dashboardMenu";
 
 export default function DashboardLayout({ children, role = "user" }) {
   const [open, setOpen] = useState(true);
+  const [loading, setLoading] = useState(true);
+
+  // Simulate loading (replace with real API loading if needed)
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1200); // 1.2s loading
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="flex min-h-screen bg-base-100 pt-16">
@@ -16,7 +23,20 @@ export default function DashboardLayout({ children, role = "user" }) {
         className={`flex-1 p-4 md:p-6 overflow-y-auto transition-all duration-300
           ${open ? "md:mr-64" : "md:mr-0"}`}
       >
-        {children}
+        {loading ? (
+          <div className="flex justify-center items-center h-full mt-16">
+            <div className="relative w-24 h-24 animate-spin">
+              {/* Outer Book Circle */}
+              <div className="absolute inset-0 border-4 border-teal-600 rounded-full border-t-transparent"></div>
+              {/* Inner Book Icon Circle */}
+              <div className="absolute inset-4 border-4 border-teal-400 rounded-full border-b-transparent"></div>
+              {/* Center Dot */}
+              <div className="absolute inset-8 w-8 h-8 bg-teal-600 rounded-full"></div>
+            </div>
+          </div>
+        ) : (
+          children
+        )}
       </div>
 
       {/* Sidebar (right side) */}

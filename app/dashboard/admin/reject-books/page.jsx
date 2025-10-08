@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import Loader from "@/components/Loader"; 
 
 export default function RejectedBooksPage() {
   const [books, setBooks] = useState([]);
@@ -30,8 +31,7 @@ export default function RejectedBooksPage() {
     }
   };
 
-  if (loading) return <p className="text-center mt-10">Loading rejected books...</p>;
-
+  if (loading) return <Loader />;
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <h1 className="text-3xl font-bold mb-6 text-teal-600 pt-16">Rejected Books</h1>

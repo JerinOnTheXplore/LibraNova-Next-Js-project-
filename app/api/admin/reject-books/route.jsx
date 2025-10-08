@@ -28,7 +28,7 @@ export async function GET() {
 
     return new Response(JSON.stringify(safeBooks), { status: 200 });
   } catch (error) {
-    console.error("❌ Failed to fetch rejected books", error);
+    console.error("Failed to fetch rejected books", error);
     return new Response(
       JSON.stringify({ error: "Failed to fetch rejected books" }),
       { status: 500 }

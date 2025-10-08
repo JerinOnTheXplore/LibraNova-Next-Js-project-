@@ -1,10 +1,10 @@
-//app>books>page.jsx
-
 "use client";
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import BookCard from "../../components/BookCard";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function BooksPage() {
   const searchParams = useSearchParams();
@@ -12,8 +12,13 @@ export default function BooksPage() {
 
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1); // current page
+  const [page, setPage] = useState(1); 
   const perPage = 8; // 8 books per page
+
+  useEffect(() => {
+    // initialize AOS
+    AOS.init({ duration: 1000, once: false });
+  }, []);
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -24,7 +29,10 @@ export default function BooksPage() {
         const res = await fetch(url);
         const data = await res.json();
         setBooks(data);
-        setPage(1); // reset page when category changes
+
+        // reset page on category change
+        const savedPage = localStorage.getItem(`booksPage_${category || "all"}`);
+        setPage(savedPage ? parseInt(savedPage) : 1);
       } catch (err) {
         console.error(err);
       } finally {
@@ -35,12 +43,14 @@ export default function BooksPage() {
     fetchBooks();
   }, [category]);
 
-  // Current books to show
-  const displayedBooks = books.slice(0, page * perPage);
+  const totalPages = Math.ceil(books.length / perPage);
+  const currentBooks = books.slice((page - 1) * perPage, page * perPage);
 
-  // Load more handler
-  const handleLoadMore = () => setPage(page + 1);
-  
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+    localStorage.setItem(`booksPage_${category || "all"}`, newPage);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <section className="min-h-screen bg-base-100 py-16">
@@ -58,38 +68,54 @@ export default function BooksPage() {
           <div className="mt-4 w-24 h-1 bg-teal-600 mx-auto rounded-full"></div>
         </div>
 
-        {/* Loading State */}
+        {/* loading State */}
         {loading && (
-          <p className="text-center text-teal-700 font-medium animate-pulse">
-            Loading books...
-          </p>
+          <div className="flex justify-center items-center mt-16">
+            <div className="relative w-24 h-24 animate-spin">
+              {/* outer Book Circle */}
+              <div className="absolute inset-0 border-4 border-teal-600 rounded-full border-t-transparent"></div>
+              {/* inner Book Icon Circle */}
+              <div className="absolute inset-4 border-4 border-teal-400 rounded-full border-b-transparent"></div>
+              {/* center Dot */}
+              <div className="absolute inset-8 w-8 h-8 bg-teal-600 rounded-full"></div>
+            </div>
+          </div>
         )}
 
-        {/* No Books */}
+        {/* no books */}
         {!loading && books.length === 0 && (
           <p className="text-center text-gray-600 mt-10">
             No books found in this category.
           </p>
         )}
 
-        {/* Book Grid */}
-        {!loading && displayedBooks.length > 0 && (
+        {/* book grid */}
+        {!loading && currentBooks.length > 0 && (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {displayedBooks.map((book) => (
-                <BookCard key={book._id} book={book} />
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {currentBooks.map((book, idx) => (
+                <div key={book._id || idx} data-aos="fade-up">
+                  <BookCard book={book} />
+                </div>
               ))}
             </div>
 
-            {/* Load More Button */}
-            {displayedBooks.length < books.length && (
-              <div className="mt-8 text-center">
-                <button
-                  onClick={handleLoadMore}
-                  className="px-6 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition"
-                >
-                  Load More
-                </button>
+            {/* pagination */}
+            {totalPages > 1 && (
+              <div className="flex justify-center gap-3 mt-10 flex-wrap">
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handlePageChange(i + 1)}
+                    className={`px-4 py-2 rounded-lg border ${
+                      page === i + 1
+                        ? "bg-teal-600 text-white"
+                        : "bg-white text-gray-700 hover:bg-gray-100"
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
               </div>
             )}
           </>

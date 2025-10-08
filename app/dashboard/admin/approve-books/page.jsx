@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Loader from "@/components/Loader"; 
 
 export default function ApproveBooksPage() {
   const [books, setBooks] = useState([]);
@@ -18,10 +19,7 @@ export default function ApproveBooksPage() {
     setLoading(false);
   };
 
-  const openModal = (book, action) => {
-    setModal({ open: true, action, book });
-  };
-
+  const openModal = (book, action) => setModal({ open: true, action, book });
   const closeModal = () => setModal({ open: false, action: null, book: null });
 
   const handleAction = async () => {
@@ -41,8 +39,7 @@ export default function ApproveBooksPage() {
     closeModal();
     fetchBooks();
   };
-
-  if (loading) return <p className="text-center mt-10">Loading books...</p>;
+  if (loading) return <Loader />;
 
   return (
     <div className="p-4 sm:p-6 max-w-6xl mx-auto">
@@ -62,24 +59,16 @@ export default function ApproveBooksPage() {
           </thead>
           <tbody>
             {books.map((b) => (
-              <tr
-                key={b._id}
-                className="border-b last:border-b-0 hover:bg-base-100"
-              >
+              <tr key={b._id} className="border-b last:border-b-0 hover:bg-base-100">
                 <td className="px-3 py-2 text-base-content">{b.title}</td>
                 <td className="px-3 py-2 text-base-content">{b.author}</td>
                 <td className="px-3 py-2 text-base-content">{b.category}</td>
                 <td className="px-3 py-2 text-base-content">{b.price?.$numberDouble || "N/A"}</td>
                 <td className="px-3 py-2 capitalize">
-                  <span
-                    className={`px-2 py-1 rounded-full text-white text-sm ${
-                      b.status === "approved"
-                        ? "bg-teal-600"
-                        : b.status === "pending"
-                        ? "bg-yellow-600"
-                        : "bg-red-600"
-                    }`}
-                  >
+                  <span className={`px-2 py-1 rounded-full text-white text-sm ${
+                    b.status === "approved" ? "bg-teal-600" :
+                    b.status === "pending" ? "bg-yellow-600" : "bg-red-600"
+                  }`}>
                     {b.status || "pending"}
                   </span>
                 </td>
@@ -122,11 +111,9 @@ export default function ApproveBooksPage() {
               <button
                 onClick={handleAction}
                 className={`px-4 py-2 rounded-lg text-white ${
-                  modal.action === "approve"
-                    ? "bg-green-600 hover:bg-green-700"
-                    : modal.action === "reject"
-                    ? "bg-red-600 hover:bg-red-700"
-                    : "bg-gray-600 hover:bg-gray-700"
+                  modal.action === "approve" ? "bg-green-600 hover:bg-green-700" :
+                  modal.action === "reject" ? "bg-red-600 hover:bg-red-700" :
+                  "bg-gray-600 hover:bg-gray-700"
                 }`}
               >
                 Yes

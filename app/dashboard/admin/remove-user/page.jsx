@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Loader from "@/components/Loader";
 
 export default function RemoveUserPage() {
   const [users, setUsers] = useState([]);
@@ -18,7 +19,6 @@ export default function RemoveUserPage() {
     setLoading(false);
   };
 
-  // ban / activate
   const handleStatusToggle = async (id, currentStatus) => {
     const newStatus = currentStatus === "active" ? "banned" : "active";
     await fetch("/api/admin/users", {
@@ -29,17 +29,15 @@ export default function RemoveUserPage() {
     fetchUsers();
   };
 
-  // permanent Remove
   const confirmDelete = async () => {
     if (!selectedUser) return;
     await fetch(`/api/admin/users?id=${selectedUser._id}`, {
       method: "DELETE",
     });
-    setSelectedUser(null); // ekhne modal clse hochche...
+    setSelectedUser(null);
     fetchUsers();
   };
-
-  if (loading) return <p className="text-center text-base-content mt-10">Loading users...</p>;
+  if (loading) return <Loader />;
 
   return (
     <div className="p-4 sm:p-6 max-w-6xl mx-auto">
@@ -88,7 +86,7 @@ export default function RemoveUserPage() {
                     {u.status === "active" ? "Ban" : "Activate"}
                   </button>
                   <button
-                    onClick={() => setSelectedUser(u)} //ekhane modal open hoy
+                    onClick={() => setSelectedUser(u)}
                     className="px-3 py-1 rounded-lg text-white text-sm bg-red-600 hover:bg-red-700"
                   >
                     Remove
@@ -100,7 +98,6 @@ export default function RemoveUserPage() {
         </table>
       </div>
 
-      {/* confirmation modal */}
       {selectedUser && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 w-96">

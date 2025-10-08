@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Loader from "@/components/Loader"; 
 
 export default function AdminLibrariansPage() {
   const [librarians, setLibrarians] = useState([]);
@@ -18,7 +19,6 @@ export default function AdminLibrariansPage() {
     setLoading(false);
   };
 
-  // ban / activate
   const handleStatusToggle = async (id, currentStatus) => {
     const newStatus = currentStatus === "active" ? "banned" : "active";
     await fetch("/api/admin/librarians", {
@@ -29,7 +29,6 @@ export default function AdminLibrariansPage() {
     fetchLibrarians();
   };
 
-  // remove librarian
   const handleDelete = async () => {
     if (!selectedLibrarian) return;
     await fetch(`/api/admin/librarians?id=${selectedLibrarian._id}`, {
@@ -38,8 +37,7 @@ export default function AdminLibrariansPage() {
     setSelectedLibrarian(null);
     fetchLibrarians();
   };
-
-  if (loading) return <p className="text-center mt-10 text-base-content">Loading librarians...</p>;
+  if (loading) return <Loader />;
 
   return (
     <div className="p-4 sm:p-6 max-w-6xl mx-auto py-20">
@@ -102,7 +100,6 @@ export default function AdminLibrariansPage() {
         </table>
       </div>
 
-      {/* confirmation modal */}
       {selectedLibrarian && (
         <div className="fixed inset-0 flex items-center justify-center bg-base-100 bg-opacity-50 z-50">
           <div className="bg-base-300 p-6 rounded-lg shadow-lg max-w-sm w-full">

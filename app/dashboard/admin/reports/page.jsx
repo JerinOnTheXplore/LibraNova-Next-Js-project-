@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
+import Loader from "@/components/Loader"; 
 
 export default function AdminReportsPage() {
   const [report, setReport] = useState(null);
@@ -22,7 +23,8 @@ export default function AdminReportsPage() {
     }
   };
 
-  if (loading) return <p className="text-center mt-10">Loading reports...</p>;
+  if (loading) return <Loader />; 
+
   if (!report) return <p className="text-center mt-10 text-red-600">No reports found.</p>;
 
   return (
@@ -31,8 +33,8 @@ export default function AdminReportsPage() {
 
       {/* Users & Books Summary */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="p-4 bg-teal-600  text-stone-50 rounded-lg text-center">
-          <p className="">Total Users</p>
+        <div className="p-4 bg-teal-600 text-stone-50 rounded-lg text-center">
+          <p>Total Users</p>
           <p className="text-2xl font-bold">{report.users.total}</p>
         </div>
         <div className="p-4 bg-green-600 rounded-lg text-center">
@@ -61,7 +63,7 @@ export default function AdminReportsPage() {
       {/* Monthly Borrow Chart */}
       <div className="bg-base-200 p-4 rounded-lg shadow text-base-content">
         <h2 className="text-xl font-semibold mb-2">Monthly Borrowed Books</h2>
-        <ResponsiveContainer className="text-base-content" width="100%" height={250}>
+        <ResponsiveContainer width="100%" height={250}>
           <BarChart data={report.monthlyBorrow}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" />
@@ -75,7 +77,7 @@ export default function AdminReportsPage() {
       {/* Monthly Revenue Chart */}
       <div className="bg-base-200 p-4 rounded-lg shadow text-base-content">
         <h2 className="text-xl font-semibold mb-2">Monthly Revenue ($)</h2>
-        <ResponsiveContainer className="text-base-content" width="100%" height={250}>
+        <ResponsiveContainer width="100%" height={250}>
           <BarChart data={report.monthlyRevenue}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Loader from "@/components/Loader"; 
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState([]);
@@ -27,11 +28,11 @@ export default function AdminUsersPage() {
     fetchUsers();
   };
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
+  if (loading) return <Loader />; 
 
   return (
     <div className="p-4 sm:p-6 max-w-6xl mx-auto">
-      <h1 className="text-2xl text-center sm:text-3xl font-bold mb-4 sm:mb-6 text-teal-600  sm:text-left mt-12">
+      <h1 className="text-2xl text-center sm:text-3xl font-bold mb-4 sm:mb-6 text-teal-600 sm:text-left mt-12">
         Manage Users
       </h1>
 

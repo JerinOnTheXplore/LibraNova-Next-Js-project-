@@ -10,32 +10,49 @@ import { FaBookOpen } from "react-icons/fa";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   // Email login
   const handleEmailLogin = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
       router.back();
     } catch (err) {
       console.error(err.message);
+      setLoading(false);
     }
   };
 
   // Google login
   const handleGoogleLogin = async () => {
     try {
+      setLoading(true);
       await signInWithPopup(auth, googleProvider);
       router.back();
     } catch (err) {
       console.error(err.message);
+      setLoading(false);
     }
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen bg-base-100">
+        <div className="relative w-24 h-24 animate-spin">
+          <div className="absolute inset-0 border-4 border-teal-600 rounded-full border-t-transparent"></div>
+          <div className="absolute inset-4 border-4 border-teal-400 rounded-full border-b-transparent"></div>
+          <div className="absolute inset-8 w-8 h-8 bg-teal-600 rounded-full"></div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-100  px-4 pt-24">
-      <div className=" shadow-xl rounded-2xl p-8 w-full max-w-md border border-gray-200 dark:border-gray-700">
+    <div className="min-h-screen flex items-center justify-center bg-base-100 px-4 pt-24">
+      <div className="shadow-xl rounded-2xl p-8 w-full max-w-md border border-gray-200 dark:border-gray-700">
         
         {/* Logo + Title */}
         <div className="flex flex-col items-center mb-6 z-10">
@@ -100,7 +117,7 @@ export default function LoginPage() {
         <button
           type="button"
           onClick={handleGoogleLogin}
-          className="w-full p-3 border rounded-lg flex items-center justify-center gap-2 hover:bg-base-300  dark:border-gray-700 transition"
+          className="w-full p-3 border rounded-lg flex items-center justify-center gap-2 hover:bg-base-300 dark:border-gray-700 transition"
         >
           <img
             src="https://www.svgrepo.com/show/475656/google-color.svg"
