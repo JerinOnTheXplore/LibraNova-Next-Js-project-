@@ -2,6 +2,7 @@ import FeaturedAuthors from "@/components/FeaturedAuthors";
 import FeaturedBooks from "@/components/FeaturedBooks";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
+import OurLatestNews from "@/components/OurLatestNews";
 import ReadersFeedback from "@/components/ReadersFeedback";
 import StatsSection from "@/components/StatsSection";
 import TopCategories from "@/components/TopCategories";
@@ -19,6 +20,7 @@ export default function Home() {
       <FeaturedAuthors></FeaturedAuthors>
       <StatsSection></StatsSection>
       <UpcomingEvents></UpcomingEvents>
+      <OurLatestNews></OurLatestNews>
     </main>
   );
 }
