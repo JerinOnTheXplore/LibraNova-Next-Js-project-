@@ -2,6 +2,9 @@
 
 import CountUp from "react-countup";
 import { FaBookOpen, FaUserFriends, FaStar, FaFeatherAlt } from "react-icons/fa";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const stats = [
   {
@@ -31,6 +34,11 @@ const stats = [
 ];
 
 const StatsSection = () => {
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: false });
+  }, []);
+
   return (
     <section className="py-12 bg-base-100">
       <h2 className="text-3xl font-bold text-center mb-10 text-teal-600">
@@ -38,9 +46,11 @@ const StatsSection = () => {
       </h2>
 
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-6 pt-12">
-        {stats.map((stat) => (
+        {stats.map((stat, index) => (
           <div
             key={stat.id}
+            data-aos="fade-up"
+            data-aos-delay={index * 150}
             className="bg-base-300 shadow-md rounded py-10 flex flex-col items-center border-t-2 border-teal-600 hover:shadow-lg transition"
           >
             {stat.icon}

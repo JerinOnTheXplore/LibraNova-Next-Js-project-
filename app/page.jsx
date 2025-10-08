@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import OurLatestNews from "@/components/OurLatestNews";
 import ReadersFeedback from "@/components/ReadersFeedback";
 import StatsSection from "@/components/StatsSection";
+import TakeBook from "@/components/TakeBook";
 import TopCategories from "@/components/TopCategories";
 import UpcomingEvents from "@/components/UpcomingEvents";
 import Image from "next/image";
@@ -21,6 +22,7 @@ export default function Home() {
       <StatsSection></StatsSection>
       <UpcomingEvents></UpcomingEvents>
       <OurLatestNews></OurLatestNews>
+      <TakeBook></TakeBook>
     </main>
   );
 }

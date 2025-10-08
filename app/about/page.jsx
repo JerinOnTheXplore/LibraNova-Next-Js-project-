@@ -65,7 +65,7 @@ export default function About() {
                         transition={{ duration: 0.6 }}
                         className="text-4xl md:text-5xl font-semibold text-teal-700"
                     >
-                        About Libra Nova
+                        About LibraNova
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0 }}
