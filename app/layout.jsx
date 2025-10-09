@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import { AuthProvider } from "@/context/AuthContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import Footer from "@/components/Footer";
+import ConditionalFooter from "@/components/ConditionalFooter";
 
 
 const geistSans = Geist({
@@ -30,7 +31,7 @@ export default function RootLayout({ children }) {
           <ThemeProvider>
           <Navbar />
           {children}
-          <Footer></Footer>
+          <ConditionalFooter></ConditionalFooter>
         </ThemeProvider>
         </body>
         </AuthProvider> 

@@ -63,7 +63,7 @@ export default function StatsPage() {
 
   return (
     <div className="p-6 max-w-7xl mx-auto space-y-8">
-      <h1 className="text-3xl font-bold text-teal-800 mb-6 text-center">Library Statistics</h1>
+      <h1 className="text-3xl font-bold text-teal-600 mb-6 text-center">Library Statistics</h1>
 
       {/* Top Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">

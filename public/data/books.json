@@ -3,7 +3,7 @@
     "title": "JavaScript: The Good Parts",
     "author": "Douglas Crockford",
     "category": "Technology",
-    "description": "A deep dive into the core concepts of JavaScript and best practices.",
+    "description": "A concise guide that filters out the messy parts of JavaScript to highlight its elegant core. It teaches developers how to write efficient, predictable, and high-quality JS by embracing its strengths and avoiding pitfalls.",
     "image": "https://m.media-amazon.com/images/I/81kqrwS1nNL.jpg",
     "price": 21.99
   },
@@ -11,7 +11,7 @@
     "title": "Code Complete",
     "author": "Steve McConnell",
     "category": "Technology",
-    "description": "A comprehensive guide to software construction techniques.",
+    "description": "A deep dive into the art and science of software construction. It covers best practices for design, debugging, and maintainability, focusing on craftsmanship and disciplined coding habits.",
     "image": "https://m.media-amazon.com/images/I/91asIC1fRwL.jpg",
     "price": 32.99
   },
@@ -20,14 +20,15 @@
     "author": "F. Scott Fitzgerald",
     "category": "Novel",
     "price": 5,
+    "description":"A timeless story of love, ambition, and the American Dream set in the Roaring Twenties. Through the mysterious millionaire Jay Gatsby’s pursuit of Daisy Buchanan, the novel explores themes of wealth, illusion, and the emptiness behind glamour.",
     "image": "https://m.media-amazon.com/images/I/81af+MCATTL.jpg"
   },
   {
     "title": "Artificial Intelligence: A Modern Approach",
     "author": "Stuart Russell, Peter Norvig",
     "category": "Technology",
-    "description": "The leading textbook in AI, covering theory and real-world applications.",
-    "image": "https://m.media-amazon.com/images/I/81ZxkT9LPzL.jpg",
+    "description": "The most comprehensive textbook on AI, covering search algorithms, machine learning, logic, robotics, and more. It’s the foundational guide used in universities worldwide to understand the theory and practice of AI.",
+    "image": "https://i.ibb.co.com/jYMcQKH/artificial.jpg",
     "price": 54.99
   },
   {
@@ -35,6 +36,7 @@
     "author": "George Orwell",
     "category": "Novel",
     "price": 6,
+    "description": "A dystopian classic depicting a totalitarian regime that controls truth, language, and thought. It’s a chilling exploration of surveillance, propaganda, and the loss of personal freedom.",
     "image": "https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg"
   },
   {
@@ -42,6 +44,7 @@
     "author": "Stephen Hawking",
     "category": "Science",
     "price": 7,
+    "description": "An accessible overview of cosmology — exploring black holes, the Big Bang, and the nature of time itself. Hawking blends complex physics with clarity, making the mysteries of the universe understandable to all readers.",
     "image": "https://m.media-amazon.com/images/I/81t2CVWEsUL.jpg"
   },
   {
@@ -49,6 +52,7 @@
     "author": "Harper Lee",
     "category": "Novel",
     "price": 5,
+    "description": "A powerful novel about racial injustice and moral growth in the American South, seen through the eyes of a young girl. It’s a moving story about empathy, conscience, and courage.",
     "image": "https://m.media-amazon.com/images/I/81gepf1eMqL.jpg"
   },
   {
@@ -56,6 +60,7 @@
     "author": "Richard Dawkins",
     "category": "Science",
     "price": 6,
+    "description": "A groundbreaking book in evolutionary biology proposing that genes — not individuals or species — drive evolution. It redefined how we understand natural selection and introduced the concept of “memes.”",
     "image": "https://m.media-amazon.com/images/I/91bYsX41DVL.jpg"
   },
   {
@@ -63,6 +68,7 @@
     "author": "Robert C. Martin",
     "category": "Technology",
     "price": 10,
+    "description": "A must-read for developers who want to write code that’s simple, readable, and easy to maintain. It emphasizes naming, testing, and refactoring — teaching the discipline required for professional-quality software.",
     "image": "https://m.media-amazon.com/images/I/41xShlnTZTL.jpg"
   },
   {
@@ -70,6 +76,7 @@
     "author": "Yuval Noah Harari",
     "category": "Science",
     "price": 8,
+    "description": "An exploration of how Homo sapiens evolved, organized societies, created religions, and built civilizations. The book connects anthropology, history, and psychology to explain how humans came to dominate the planet.",
     "image": "https://m.media-amazon.com/images/I/713jIoMO3UL.jpg"
   },
   {
@@ -77,6 +84,7 @@
     "author": "Andrew Hunt & David Thomas",
     "category": "Technology",
     "price": 9,
+    "description": "A timeless guide to becoming a better software developer. It teaches practical techniques, habits, and mindset shifts that help programmers write clean, maintainable, and adaptable code while continuously improving their craft.",
     "image": "https://m.media-amazon.com/images/I/518FqJvR9aL.jpg"
   },
   {
@@ -84,13 +92,15 @@
     "author": "Thomas H. Cormen",
     "category": "Technology",
     "price": 12,
-    "image": "https://m.media-amazon.com/images/I/41SN-VGVbWL._SX376_BO1,204,203,200_.jpg"
+    "description": "The leading textbook in AI, covering theory and real-world applications.It has become the standard text in AI education, adopted by many universities worldwide, covering topics such as search algorithms, logic, planning, machine learning, robotics, and more.",
+    "image": "https://i.ibb.co.com/v4Zjp3Bd/algoridm.jpg"
   },
   {
     "title": "Pride and Prejudice",
     "author": "Jane Austen",
     "category": "Novel",
     "price": 5,
+    "description": "The leading textbook in AI, covering theory and real-world applications.",
     "image": "https://m.media-amazon.com/images/I/81OthjkJBuL.jpg"
   },
   {
@@ -98,7 +108,7 @@
     "author": "Frederick P. Brooks Jr.",
     "category": "Technology",
     "description": "Essays on software engineering and project management challenges.",
-    "image": "https://m.media-amazon.com/images/I/71Vkg0v9m9L.jpg",
+    "image": "https://i.ibb.co.com/QvH0gJZZ/myth.jpg",
     "price": 18.49
   },
   {
@@ -106,14 +116,15 @@
     "author": "Aldous Huxley",
     "category": "Novel",
     "price": 6,
-    "image": "https://m.media-amazon.com/images/I/71rpa1-0S+L.jpg"
+    "description": "Brave New World is a profoundly important classic of world literature—“a searching vision of an unequal, technologically-advanced future.The novel anticipates developments in reproductive technology, sleep-learning, psychological manipulation, and classical conditioning that combine to change society.",
+    "image": "https://i.ibb.co.com/sS4jYQn/brave.jpg"
   },
   {
     "title": "You Don't Know JS",
     "author": "Kyle Simpson",
     "category": "Technology",
-    "description": "A detailed series exploring the intricacies of JavaScript.",
-    "image": "https://m.media-amazon.com/images/I/71kDWG3J9wL.jpg",
+    "description": "You Don’t Know JS is a deep dive series into the core mechanics of JavaScript. It is written by Kyle Simpson and explores the inner workings of JS—scopes, closures, objects, prototypes, async, and more.",
+    "image": "https://i.ibb.co.com/XxPNphLh/js.jpg",
     "price": 27.99
   },
   {
@@ -121,20 +132,23 @@
     "author": "Brian Greene",
     "category": "Science",
     "price": 7,
-    "image": "https://m.media-amazon.com/images/I/81En-5JxTTL.jpg"
+    "description": "Brian Greene presents The Elegant Universe as a compelling journey into the frontiers of modern physics. Greene peels away the layers of mystery to reveal a universe made up of eleven dimensions, where the fabric of space-time may tear and repair itself, and all matter is generated by the vibrations of microscopically tiny loops of energy.",
+    "image": "https://i.ibb.co.com/pjqtznZ1/universe.jpg"
   },
   {
     "title": "Artificial Intelligence: A Modern Approach",
     "author": "Stuart Russell & Peter Norvig",
     "category": "Technology",
     "price": 11,
-    "image": "https://m.media-amazon.com/images/I/81ZxkT9LPzL.jpg"
+    "description": "Brian Greene presents The Elegant Universe as a compelling journey into the frontiers of modern physics. Greene peels away the layers of mystery to reveal a universe made up of eleven dimensions, where the fabric of space-time may tear and repair itself, and all matter is generated by the vibrations of microscopically tiny loops of energy.",
+    "image": "https://i.ibb.co.com/jYMcQKH/artificial.jpg"
   },
   {
     "title": "The Catcher in the Rye",
     "author": "J.D. Salinger",
     "category": "Novel",
     "price": 5,
+    "description": "The book bridges the gap between general relativity and quantum mechanics by introducing string theory, explaining how it might reconcile those two pillars of physics. Greene uses metaphor and analogy to make sophisticated concepts accessible and entertaining..",
     "image": "https://m.media-amazon.com/images/I/81OthjkJBuL.jpg"
   },
   {
@@ -142,6 +156,7 @@
     "author": "Cal Newport",
     "category": "Technology",
     "price": 9,
+    "description": "The “Get Started” edition introduces the fundamentals and prepares readers for the deeper volumes. The series encourages readers to understand why JavaScript behaves the way it does, not just how to make it work.",
     "image": "https://m.media-amazon.com/images/I/71g2ednj0JL.jpg"
   }
 ]

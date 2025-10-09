@@ -43,7 +43,7 @@ export default function Footer() {
           <h2 className="text-lg font-semibold tracking-wide text-white dark:text-teal-300">
            LibraNova
           </h2>
-          <p className="text-sm text-base-content dark:text-gray-400 mt-1">
+          <p className="text-sm text-base-content mt-1">
             © {new Date().getFullYear()} Mst. Nasrin Howlader Jerin . All rights reserved.
           </p>
         </div>

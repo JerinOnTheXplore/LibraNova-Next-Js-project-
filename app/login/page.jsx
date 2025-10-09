@@ -64,7 +64,7 @@ export default function LoginPage() {
             LibraNova
           </h2>
           <p className="text-sm text-base-content">
-            Login to continue your reading journey 📚
+            Login to continue your reading journey <FaBookOpen className="inline"/>
           </p>
         </div>
 

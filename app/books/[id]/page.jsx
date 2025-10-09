@@ -75,7 +75,7 @@ export default async function BookDetails({ params }) {
               <p className="text-lg text-base-content mb-1">📚 Category: {book.category}</p>
               <p className="text-lg text-base-content mb-1">📖 Total Pages: {book.totalPages}120</p>
               <p className="text-lg text-base-content mb-1">💰 Price: ${book.price}</p>
-              <p className="mt-4 text-base-content">{book.description}</p>
+              <p className="mt-4 text-base-content"><b>Description:</b> {book.description}</p>
             </div>
 
             {/* Client-side Actions */}

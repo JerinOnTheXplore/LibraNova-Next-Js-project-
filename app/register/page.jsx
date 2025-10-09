@@ -64,7 +64,7 @@ export default function RegisterPage() {
             LibraNova
           </h2>
           <p className="text-sm text-base-content">
-            Create your account & start your book journey 📖
+            Create your account & start your book journey <FaBookOpen className="inline"/>
           </p>
         </div>
 

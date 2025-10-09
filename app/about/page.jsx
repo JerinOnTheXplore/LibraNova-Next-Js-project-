@@ -188,7 +188,7 @@ export default function About() {
                         className="w-32 h-32 rounded-full object-cover ring-4 ring-teal-600 shadow"
                     />
                     <div className="flex-1">
-                        <h3 className="text-2xl font-bold text-teal-700">Meet the Creator — Jerin</h3>
+                        <h3 className="text-2xl font-bold text-teal-700">Behind the Code — Jerin</h3>
                         <p className="mt-2 text-base-content">
                             Hi, I’m <strong>Jerin</strong>, a frontend-focused web developer who loves
                             blending clean UI with practical features. I built Libra Nova to
@@ -309,7 +309,7 @@ export default function About() {
                          href="https://mail.google.com/mail/?view=cm&fs=1&to=jerinjerin101325@gmail.com&su=Hello%20Jerin&body=I%20found%20your%20project%20amazing!"
                          target="_blank"
                          rel="noopener noreferrer"
-                         className="inline-flex items-center gap-2 bg-base-300 text-teal-700 px-5 py-3 rounded-full font-semibold shadow hover:bg-teal-100 transition-colors"
+                         className="inline-flex items-center gap-2 bg-base-300 text-teal-700 px-5 py-3 rounded font-semibold shadow hover:bg-teal-100 transition-colors"
                         >
                           <FaPaperPlane /> Contact Me
                         </a>

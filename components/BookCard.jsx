@@ -60,7 +60,7 @@ function PaymentForm({ book, user, onSuccess, onCancel }) {
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 bg-base-100 text-base-content rounded-lg hover:bg-gray-600"
+          className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-600"
         >
           Cancel
         </button>
@@ -141,7 +141,7 @@ export default function BookCard({ book }) {
       <div className="p-4 flex-1 flex flex-col justify-between">
         <div>
           <h3 className="font-semibold text-lg">{book.title}</h3>
-          <p className="text-sm text-gray-500">by {book.author}</p>
+          <p className="text-sm text-base-content">by {book.author}</p>
           <p className="text-sm mt-2">{book.category}</p>
           <p className="text-teal-600 font-semibold mt-2">${book.price}</p>
         </div>

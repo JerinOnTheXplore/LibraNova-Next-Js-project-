@@ -53,7 +53,7 @@ export function PaymentForm({ book, user, onSuccess, onCancel }) {
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 bg-base-200 text-base-content rounded-lg "
+          className="px-4 py-2  bg-gray-800 text-white rounded-lg "
         >
           Cancel
         </button>

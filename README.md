@@ -11,10 +11,8 @@
 - Browse books by **category, author, or title**
 - Borrow books by paying rental fees (**Stripe)
 - View borrowed books list with **due dates**
-- Read books online with **PDF preview / embedded reader**
-- Get **email/notification reminders** for due dates
-- Extend rental period (with extra fee)
-- Leave **ratings & reviews** for books
+- Read books online with **PDF preview**
+- Leave **reviews** for books
 
 ### 📚 Librarian
 - Login with **librarian role**
@@ -26,7 +24,6 @@
 - Manage librarians (add/remove)
 - Approve or reject librarian-submitted books
 - View overall reports (rentals, payments, active users)
-- Handle disputes and refunds
 
 ---
 
@@ -46,7 +43,7 @@
 - **Database:** MongoDB Atlas (using official Node.js driver)  
 - **Authentication:** Firebase Auth + JWT  
 - **Payment:** Stripe   
-- **Hosting:** Vercel (Frontend), MongoDB Atlas (Database)
+- **Hosting:** Vercel 
 
 ---
 

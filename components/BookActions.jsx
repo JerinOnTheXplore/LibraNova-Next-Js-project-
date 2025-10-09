@@ -55,7 +55,7 @@ function PaymentForm({ book, user, onSuccess, onCancel }) {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 bg-white/20 p-3 rounded-md">
       <CardElement className="p-3 border text-base-content rounded-md" />
       <div className="flex justify-center gap-3">
-        <button type="button" onClick={onCancel} className="px-4 py-2 bg-base-100 rounded-lg hover:bg-gray-300">
+        <button type="button" onClick={onCancel} className="px-4 py-2 rounded-lg bg-gray-600 text-white">
           Cancel
         </button>
         <button type="submit" className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700">
