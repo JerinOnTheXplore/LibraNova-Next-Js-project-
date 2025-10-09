@@ -8,6 +8,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 
+
+
+
 export default function BooksPageClient() {
   const searchParams = useSearchParams();
   const category = searchParams.get("cat") || "all";
