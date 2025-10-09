@@ -11,6 +11,7 @@ export default function BooksPage() {
   const category = searchParams.get("cat");
 
   const [books, setBooks] = useState([]);
+  const [totalBooks, setTotalBooks] = useState(0);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const perPage = 8;
@@ -20,19 +21,18 @@ export default function BooksPage() {
     AOS.init({ duration: 800, once: false });
   }, []);
 
-  // Fetch books
+  // Fetch books from API with server-side pagination
   useEffect(() => {
     const fetchBooks = async () => {
       setLoading(true);
       try {
-        let url = "/api/books";
-        if (category) url += `?category=${category}`;
+        let url = `/api/books?page=${page}&limit=${perPage}`;
+        if (category) url += `&category=${category}`;
         const res = await fetch(url);
         const data = await res.json();
-        setBooks(data);
 
-        const savedPage = localStorage.getItem(`booksPage_${category || "all"}`);
-        setPage(savedPage ? parseInt(savedPage) : 1);
+        setBooks(data.books || []);
+        setTotalBooks(data.totalBooks || 0);
       } catch (err) {
         console.error("❌ Failed to fetch books:", err);
       } finally {
@@ -41,22 +41,20 @@ export default function BooksPage() {
     };
 
     fetchBooks();
-  }, [category]);
+  }, [category, page]);
 
-  // Pagination logic
-  const totalPages = Math.ceil(books.length / perPage);
-  const displayedBooks = books.slice((page - 1) * perPage, page * perPage);
+  // Pagination
+  const totalPages = Math.ceil(totalBooks / perPage);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
-    localStorage.setItem(`booksPage_${category || "all"}`, newPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <section className="min-h-screen bg-base-100 py-16">
       <div className="max-w-7xl mx-auto px-4 py-24">
-        {/* Page Heading */}
+        {/* Heading */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold text-teal-800 drop-shadow-sm">
             {category ? `${category} Books` : "Our Collection"}
@@ -69,15 +67,12 @@ export default function BooksPage() {
           <div className="mt-4 w-24 h-1 bg-teal-600 mx-auto rounded-full"></div>
         </div>
 
-        {/* Loading Spinner */}
+        {/* Loading */}
         {loading && (
           <div className="flex justify-center items-center mt-16">
             <div className="relative w-20 h-20 animate-spin">
-              {/* outer ring */}
               <div className="absolute inset-0 border-4 border-teal-600 rounded-full border-t-transparent"></div>
-              {/* inner ring */}
               <div className="absolute inset-3 border-4 border-teal-400 rounded-full border-b-transparent"></div>
-              {/* center dot */}
               <div className="absolute inset-7 bg-teal-600 rounded-full"></div>
             </div>
           </div>
@@ -91,10 +86,10 @@ export default function BooksPage() {
         )}
 
         {/* Book Grid */}
-        {!loading && displayedBooks.length > 0 && (
+        {!loading && books.length > 0 && (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-              {displayedBooks.map((book, idx) => (
+              {books.map((book, idx) => (
                 <div key={book._id || idx} data-aos="fade-up">
                   <BookCard book={book} />
                 </div>
