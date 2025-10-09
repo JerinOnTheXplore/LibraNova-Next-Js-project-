@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
@@ -21,7 +22,7 @@ export default function LoginPage() {
       await signInWithEmailAndPassword(auth, email, password);
       router.back();
     } catch (err) {
-      console.error(err.message);
+      toast.error(err.message);
       setLoading(false);
     }
   };
@@ -33,7 +34,7 @@ export default function LoginPage() {
       await signInWithPopup(auth, googleProvider);
       router.back();
     } catch (err) {
-      console.error(err.message);
+      toast.error(err.message);
       setLoading(false);
     }
   };

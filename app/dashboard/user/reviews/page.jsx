@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import app from "@/utils/firebase";
 import { useRouter } from "next/navigation";
+import Loader from "@/components/Loader";
 
 export default function ReviewsPage() {
   const [user, setUser] = useState(null);
@@ -57,7 +58,7 @@ export default function ReviewsPage() {
     setReviews(reviews.filter((r) => r._id !== id));
   };
 
-  if (loading) return null;
+  if (loading) return <Loader/>;
 
   return (
     <div className="bg-base-100 pt-16 md:pt-20">

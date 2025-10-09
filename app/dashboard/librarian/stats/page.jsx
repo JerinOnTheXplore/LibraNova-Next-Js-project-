@@ -1,5 +1,6 @@
 "use client";
 
+import Loader from "@/components/Loader";
 import { useEffect, useState } from "react";
 import {
   LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid,
@@ -44,7 +45,7 @@ export default function StatsPage() {
     fetchStats();
   }, []);
 
-  if (loading) return <p className="text-center mt-10 text-teal-700 animate-pulse">Loading stats...</p>;
+  if (loading) return <Loader/>;
   if (!stats) return <p className="text-center mt-10 text-red-500">No stats available.</p>;
 
   const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A855F7"];

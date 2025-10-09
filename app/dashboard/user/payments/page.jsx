@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import app from "@/utils/firebase";
 import { useRouter } from "next/navigation";
+import Loader from "@/components/Loader";
 
 export default function PaymentsPage() {
   const [user, setUser] = useState(null);
@@ -48,7 +49,7 @@ export default function PaymentsPage() {
     return () => window.removeEventListener("storage", handleStorageChange);
   }, [user]);
 
-  if (loading) return null; // or a spinner
+  if (loading) return <Loader/>; 
 
   //  Remove handler
   const handleRemovePayment = (id) => {

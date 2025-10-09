@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import Loader from "./Loader";
 
 export default function ManageBooks() {
   const [user] = useAuthState(auth);
@@ -124,7 +125,7 @@ export default function ManageBooks() {
     }
   };
 
-  if (loading) return <p>Loading books...</p>;
+  if (loading) return <Loader/>;
   if (!user) return <p>Please login as librarian.</p>;
 
   return (

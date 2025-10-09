@@ -1,4 +1,5 @@
 "use client";
+import Loader from "@/components/Loader";
 import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 
@@ -7,10 +8,10 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 export default function PDFViewer({ fileUrl }) {
   const [numPages, setNumPages] = useState(null);
 
-  const onDocumentLoadSuccess = ({ numPages }) => setNumPages(numPages);
+  const onDocumentLoadSuccess = ({ numPages }) => setNumPages(numPages); 
 
   return (
-    <div className="flex flex-col text-base-content items-center">
+    <div className="flex flex-col text-base-content items-center pt-10">
       <Document file={fileUrl} onLoadSuccess={onDocumentLoadSuccess}>
         {Array.from(new Array(numPages), (_, index) => (
           <Page key={`page_${index + 1}`} pageNumber={index + 1} />
