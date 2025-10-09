@@ -1,5 +1,4 @@
-// app/books/page.jsx
-
+"use client";
 import BooksPageClient from "./BooksPageClient";
 
 
