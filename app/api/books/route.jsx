@@ -1,4 +1,4 @@
-
+// app/api/books/route.js
 import clientPromise from "../../../utils/mongodb";
 
 export async function GET(req) {
@@ -17,8 +17,6 @@ export async function GET(req) {
     }
 
     const totalBooks = await db.collection("books").countDocuments(filter);
-
-    // Fetch paginated books
     const books = await db
       .collection("books")
       .find(filter)
@@ -26,14 +24,9 @@ export async function GET(req) {
       .limit(limit)
       .toArray();
 
-    return new Response(JSON.stringify({ books, totalBooks }), {
-      status: 200,
-    });
+    return new Response(JSON.stringify({ books, totalBooks }), { status: 200 });
   } catch (err) {
     console.error(err);
-    return new Response(
-      JSON.stringify({ error: "Failed to fetch books" }),
-      { status: 500 }
-    );
+    return new Response(JSON.stringify({ error: "Failed to fetch books" }), { status: 500 });
   }
 }
