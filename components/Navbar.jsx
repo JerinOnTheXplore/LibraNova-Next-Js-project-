@@ -23,13 +23,6 @@ export default function Navbar() {
   const { user, role } = useAuth();
   const { darkMode, toggleTheme } = useTheme();
 
-  const booksDropdownItems = [
-    { href: "/books", label: "Browse All" },
-    { href: "/books?cat=novel", label: "Novels" },
-    { href: "/books?cat=science", label: "Science" },
-    { href: "/books?cat=tech", label: "Technology" },
-  ];
-
   const dashboardItems = [
     { href: "/dashboard/user", label: "User Dashboard", roles: ["user"] },
     { href: "/dashboard/librarian", label: "Librarian Dashboard", roles: ["librarian"] },
@@ -65,7 +58,7 @@ export default function Navbar() {
         {/* Desktop Menu */}
         <div className="hidden lg:flex mx-auto max-w-4xl py-3 px-5 bg-teal-700 text-white items-center gap-4 rounded-full">
           <LinkItem href="/" label="Home"/>
-          <DropdownMenu title="Books" items={booksDropdownItems} />
+          <LinkItem href="/books" label="Books"/>
           {user && <LinkItem href="/dashboard/dashboardContent" label="Dashboard" />}
           <LinkItem href="/blogs" label="Blog"/>
           <LinkItem href="/about" label="About"/>
@@ -151,7 +144,7 @@ export default function Navbar() {
               </div>
               <div className="flex flex-col gap-4 bg-base-200 text-base-content px-2 pb-4">
                 <LinkItemMobile href="/" label="Home" />
-                <DropdownMenuMobile title="Books" items={booksDropdownItems} />
+                <LinkItemMobile href="/books" label="Books" />
                 {user && <LinkItemMobile href="/dashboard/dashboardContent" label="Dashboard" />}
                 <LinkItemMobile href="/blogs" label="Blog" />
                 <LinkItemMobile href="/about" label="About" />

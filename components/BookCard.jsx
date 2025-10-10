@@ -140,7 +140,7 @@ export default function BookCard({ book }) {
 
       <div className="p-4 flex-1 flex flex-col justify-between">
         <div>
-          <h3 className="font-semibold text-lg">{book.title}</h3>
+          <h3 className="font-semibold text-lg overflow-ellipsis">{book.title}</h3>
           <p className="text-sm text-base-content">by {book.author}</p>
           <p className="text-sm mt-2">{book.category}</p>
           <p className="text-teal-600 font-semibold mt-2">${book.price}</p>

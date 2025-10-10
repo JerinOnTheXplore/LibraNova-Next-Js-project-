@@ -1,4 +1,3 @@
-// app/books/BooksPageClient.jsx
 "use client";
 
 import { useSearchParams } from "next/navigation";
@@ -7,9 +6,7 @@ import BookCard from "../../components/BookCard";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-
-
- export default function BooksPageClient() {
+export default function BooksPageClient() {
   const searchParams = useSearchParams();
   const category = searchParams.get("cat") || "all";
 
@@ -27,10 +24,21 @@ import "aos/dist/aos.css";
     const fetchBooks = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`/api/books?category=${category}&page=${page}&limit=${perPage}`);
+        const res = await fetch("/data/books.json");
         const data = await res.json();
-        setBooks(data.books);
-        setTotalBooks(data.totalBooks);
+
+        // Filter by category (if not 'all')
+        const filtered =
+          category === "all"
+            ? data
+            : data.filter((b) => b.category?.toLowerCase() === category.toLowerCase());
+
+        // Pagination logic
+        const startIndex = (page - 1) * perPage;
+        const paginated = filtered.slice(startIndex, startIndex + perPage);
+
+        setBooks(paginated);
+        setTotalBooks(filtered.length);
       } catch (err) {
         console.error("Failed to fetch books:", err);
       } finally {

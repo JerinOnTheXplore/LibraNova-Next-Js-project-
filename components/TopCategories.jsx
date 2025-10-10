@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useRouter } from "next/navigation";
 
 // custom arrows
 const NextArrow = ({ onClick }) => (
@@ -27,6 +28,7 @@ const PrevArrow = ({ onClick }) => (
 );
 
 const TopCategories = () => {
+  const router = useRouter();
   const [books, setBooks] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -36,7 +38,7 @@ const TopCategories = () => {
       .then((data) => setBooks(data))
       .catch((err) => console.error(err));
 
-    // Initialize AOS
+    // initialize AOS
     AOS.init({ duration: 1000, once: false });
   }, []);
 
@@ -156,7 +158,7 @@ const TopCategories = () => {
               </div>
 
               <Link
-                href={`/books?cat=${selectedBook.category.toLowerCase()}`}
+                href={`/books/${selectedBook._id}`}
                 className="mt-4 inline-block bg-teal-600 text-white py-2 px-4 rounded hover:bg-teal-500 transition w-fit"
               >
                 See The Book
