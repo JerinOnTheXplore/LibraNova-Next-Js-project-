@@ -44,7 +44,7 @@ const FeaturedBooks = () => {
     dots: true,
     infinite: true,
     speed: 800,
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -60,7 +60,7 @@ const FeaturedBooks = () => {
   return (
     <div className="bg-base-100">
       <Toaster position="top-right" />
-      <section className="py-16 md:py-20 px-4 md:px-8 lg:px-16 max-w-7xl mx-auto">
+      <section className="py-16 md:py-20  max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl text-teal-600 font-bold text-center">
           Featured Books
         </h2>

@@ -31,7 +31,7 @@ const OurLatestNews = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    localStorage.setItem("latestNewsPage", page); // Save page to localStorage
+    localStorage.setItem("latestNewsPage", page); // save page to localStorage
   };
 
   return (
