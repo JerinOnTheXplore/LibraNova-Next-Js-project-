@@ -48,7 +48,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 py-4 backdrop-blur-md shadow-sm transition-colors">
-      <div className="max-w-6xl mx-auto px-4 flex justify-between items-center">
+      <div className=" max-w-full px-4 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-extrabold text-2xl">
           <FaBookOpen className="text-teal-700 dark:text-teal-400" />

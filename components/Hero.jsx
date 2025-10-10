@@ -14,6 +14,7 @@ const images = [
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { darkMode } = useTheme();
+
   // Auto-slide
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,7 +24,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[75vh] overflow-hidden rounded-2xl shadow-xl">
+    <div className="relative w-full h-[75vh] sm:h-[65vh] md:h-[70vh] lg:h-[75vh] overflow-hidden rounded-2xl shadow-xl">
       <AnimatePresence>
         <motion.img
           key={images[currentIndex]}
@@ -46,16 +47,16 @@ const Hero = () => {
       ></div>
 
       {/* Text content */}
-      <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6">
+      <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 sm:px-6 md:px-12 lg:px-16">
         <motion.h1
-          className="text-4xl md:text-5xl font-bold text-teal-600 drop-shadow-lg mb-4"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-teal-600 drop-shadow-lg mb-4 leading-snug sm:leading-snug md:leading-tight"
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
           Discover & Rent Your Favorite Books Anytime 📚
         </motion.h1>
-        <p className="text-stone-50 text-lg md:text-xl mb-6 max-w-2xl">
+        <p className="text-white text-base sm:text-lg md:text-xl mb-6 max-w-xl sm:max-w-2xl md:max-w-3xl">
           Browse through thousands of titles across all genres — read, review, and enjoy!
         </p>
 

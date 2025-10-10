@@ -20,7 +20,7 @@ const ReadersFeedback = () => {
     dots: true,
     infinite: true,
     speed: 700,
-    slidesToShow: 3,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
