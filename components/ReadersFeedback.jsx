@@ -39,7 +39,7 @@ const ReadersFeedback = () => {
         What Our Readers Say
       </h2>
 
-      <div className="overflow-hidden pt-12 mx-auto">
+      <div className="overflow-hidden pt-8 mx-auto">
         <Slider
         {...settings}
         className="relative text-shadow-base-content"

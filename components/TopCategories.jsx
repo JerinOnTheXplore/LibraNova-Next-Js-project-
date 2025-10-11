@@ -81,11 +81,11 @@ const TopCategories = () => {
       <section className="mx-auto">
         <h2
           data-aos="fade-up"
-          className="text-3xl md:text-4xl text-teal-600 font-bold text-center py-20"
+          className="text-3xl md:text-4xl text-teal-600 font-bold text-center "
         >
           Explore by Category
         </h2>
-        <div className="flex flex-col lg:flex-row py-2 ">
+        <div className="flex flex-col lg:flex-row py-16 ">
           {/* Left Side: Slider */}
           <div
             data-aos="fade-right"
