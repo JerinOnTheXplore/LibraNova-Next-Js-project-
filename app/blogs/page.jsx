@@ -86,7 +86,7 @@ export default function BlogList() {
   }
 
   return (
-    <div className="bg-base-100">
+    <div className="bg-base-100 overflow-x-hidden">
       <section className="py-36 max-w-6xl mx-auto">
         <h2 className="text-3xl font-bold text-base-content text-center mb-4">Our Latest News</h2>
         <p className="text-center text-base-content mb-8">
@@ -131,7 +131,7 @@ export default function BlogList() {
           </div>
 
           {/* Right Side: Sidebar */}
-          <div className="w-full lg:w-1/3 flex flex-col gap-6">
+          <div className="w-full lg:w-1/3 flex flex-col">
             {/* Search */}
             <div data-aos="fade-left">
               <h4 className="font-semibold mb-2 text-base-content">Search</h4>
@@ -184,8 +184,8 @@ export default function BlogList() {
           </div>
         </div>
 
-        {/* pagination */}
-        <div className="flex justify-center gap-2 mt-8">
+       {/* pagination */}
+        <div className="flex justify-center gap-2 mt-8 ">
           {Array.from({ length: totalPages }, (_, i) => (
             <button
               key={i}
@@ -197,7 +197,7 @@ export default function BlogList() {
               {i + 1}
             </button>
           ))}
-        </div>
+        </div> 
       </section>
     </div>
   );

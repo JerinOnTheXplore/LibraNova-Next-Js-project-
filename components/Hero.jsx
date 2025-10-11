@@ -24,7 +24,8 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[75vh] sm:h-[65vh] md:h-[70vh] lg:h-[75vh] overflow-hidden rounded-2xl shadow-xl z-10">
+    <div className=" overflow-x-auto">
+      <div className="relative max-w-full h-[75vh] sm:h-[65vh] md:h-[70vh] lg:h-[75vh] rounded-2xl shadow-xl z-40">
       <AnimatePresence>
         <motion.img
           key={images[currentIndex]}
@@ -70,6 +71,7 @@ const Hero = () => {
           </motion.button>
         </Link>
       </div>
+    </div>
     </div>
   );
 };

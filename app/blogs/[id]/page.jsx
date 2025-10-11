@@ -99,8 +99,8 @@ const BlogDetails = () => {
   const categories = ["Adventure", "Education", "Modern Fiction", "Contemporary", "Art and Literature"];
 
   return (
-    <div className="bg-base-100">
-      <section className="max-w-6xl mx-auto px-4 py-36 flex flex-col lg:flex-row gap-8">
+    <div className="bg-base-100 overflow-x-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 flex flex-col lg:flex-row gap-10">
         {/* Left Content */}
         <div className="w-full lg:w-2/3">
           {/* Back Button */}
@@ -130,9 +130,9 @@ const BlogDetails = () => {
             <h1 className="text-3xl font-bold mb-4 text-base-content">{currentBlog.title}</h1>
             <p className="text-base-content leading-relaxed mb-6">{currentBlog.description}</p>
 
-            <div className="flex gap-4 mb-6">
-              <img src={currentBlog.images[1]} alt="" className="w-1/2 rounded object-cover" data-aos="fade-right" />
-              <img src={currentBlog.images[2]} alt="" className="w-1/2 rounded object-cover" data-aos="fade-left" />
+            <div className="flex gap-1 mb-6 mx-auto">
+              <img src={currentBlog.images[1]} alt="" className="w-1/2 rounded object-cover" data-aos="fade-up" />
+              <img src={currentBlog.images[2]} alt="" className="w-1/2 rounded object-cover" data-aos="fade-up" />
             </div>
 
             <p className="text-base-content mb-6">{currentBlog.conclusion}</p>
@@ -219,7 +219,7 @@ const BlogDetails = () => {
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

@@ -58,7 +58,7 @@ const FeaturedBooks = () => {
   };
 
   return (
-    <div className="bg-base-100">
+    <div className="bg-base-100 overflow-x-hidden">
       <Toaster position="top-right" />
       <section className="py-16 md:py-20  max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl text-teal-600 font-bold text-center">

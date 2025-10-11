@@ -27,11 +27,11 @@ export default function Home() {
   return (
     <main>
       
+      
       <Hero></Hero>
       <FeaturedBooks></FeaturedBooks>
       <TopCategories></TopCategories>
       <ReadersFeedback></ReadersFeedback>
-      <FeaturedAuthors></FeaturedAuthors>
       <StatsSection></StatsSection>
       <UpcomingEvents></UpcomingEvents>
       <OurLatestNews></OurLatestNews>

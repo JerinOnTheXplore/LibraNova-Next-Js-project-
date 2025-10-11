@@ -69,7 +69,7 @@ export default function About() {
     }
 
     return (
-        <div className="min-h-screen bg-base-100 text-base-content py-24">
+        <div className="min-h-screen overflow-x-hidden bg-base-100 text-base-content py-24">
             {/* HERO */}
             <header className="max-w-6xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center gap-8" data-aos="fade-up">
                 <div className="md:w-1/2">
@@ -181,13 +181,13 @@ export default function About() {
 
             {/* ABOUT THE CREATOR */}
             <section className="max-w-5xl mx-auto px-6 py-12">
-                <div className="p-8 flex flex-col md:flex-row items-center gap-6" data-aos="fade-up">
+                <div className="p-8 flex flex-col mx-auto  md:flex-row items-center gap-6" data-aos="fade-up">
                     <img
                         src={profileImage}
                         alt="Jerin — Creator"
                         className="w-32 h-32 rounded-full object-cover ring-4 ring-teal-600 shadow"
                     />
-                    <div className="flex-1">
+                    <div className="flex-1 px-2">
                         <h3 className="text-2xl font-bold text-teal-700">Behind the Code — Jerin</h3>
                         <p className="mt-2 text-base-content">
                             Hi, I’m <strong>Jerin</strong>, a frontend-focused web developer who loves

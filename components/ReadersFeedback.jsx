@@ -33,7 +33,7 @@ const ReadersFeedback = () => {
   };
 
   return (
-    <div className="bg-base-100 text-base-content">
+    <div className="bg-base-100 text-base-content overflow-x-hidden">
         <section className="py-16 max-w-6xl mx-auto">
       <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center text-teal-600">
         What Our Readers Say

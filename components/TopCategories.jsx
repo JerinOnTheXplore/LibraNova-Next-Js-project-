@@ -77,15 +77,15 @@ const TopCategories = () => {
   };
 
   return (
-    <div className="bg-base-100">
-      <section className="">
+    <div className="bg-base-100 overflow-x-hidden">
+      <section className="mx-auto">
         <h2
           data-aos="fade-up"
-          className="text-3xl md:text-4xl text-teal-600 font-bold text-center pb-10"
+          className="text-3xl md:text-4xl text-teal-600 font-bold text-center py-20"
         >
           Explore by Category
         </h2>
-        <div className="flex flex-col lg:flex-row py-12">
+        <div className="flex flex-col lg:flex-row py-2 ">
           {/* Left Side: Slider */}
           <div
             data-aos="fade-right"

@@ -42,13 +42,13 @@ export default function Navbar() {
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "";
+      document.body.style.overflow = "auto";
     }
   }, [isOpen]);
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 py-4 backdrop-blur-md shadow-sm transition-colors">
-      <div className=" max-w-full px-4 flex justify-between items-center">
+      <div className=" max-w-6xl mx-auto px-2 flex justify-between items-center">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-extrabold text-2xl">
           <FaBookOpen className="text-teal-700 dark:text-teal-400" />
@@ -109,7 +109,7 @@ export default function Navbar() {
         {/* Mobile Hamburger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="block lg:hidden text-base-content hover:text-teal-600"
+          className="block md:bloock lg:hidden text-base-content hover:text-teal-600"
         >
           {isOpen ? <FaTimes className="w-7 h-7" /> : <FaBars className="w-7 h-7" />}
         </button>
@@ -124,17 +124,16 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 backdrop-blur-md z-20"
+              className="fixed mx-auto px-4 inset-0 backdrop-blur-md z-40"
               onClick={() => setIsOpen(false)}
             />
 
             {/* Drawer */}
             <motion.aside
               initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
+              animate={{ x: isOpen ? 0 : "-100%" }}
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
-              className="fixed top-0 left-0 h-full w-64 bg-gradient-to-b from-teal-800 to-teal-700 text-white shadow-xl p-6 z-30"
+              className="fixed inset-0 z-[9999] bg-gradient-to-b from-teal-800 to-teal-700 text-white shadow-xl w-64 p-6"
             >
               <div className="flex justify-between  items-center mb-10 ">
                 <span className="text-lg font-semibold">Menu</span>

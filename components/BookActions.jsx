@@ -147,9 +147,9 @@ export default function BookActions({ book }) {
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           <div className="bg-base-200 rounded-lg p-6 text-center w-96">
             <h2 className="text-xl font-bold text-teal-700 mb-3">🎉 Success!</h2>
-            <p className="mb-4">You have successfully borrowed <strong>{book.title}</strong>.</p>
+            <p className="mb-4 text-base-content">You have successfully borrowed <strong>{book.title}</strong>.</p>
             <div className="flex justify-center gap-3">
-              <button onClick={() => setShowBorrowModal(false)} className="px-4 py-2 bg-base-100 rounded-lg hover:bg-gray-300">
+              <button onClick={() => setShowBorrowModal(false)} className="px-4 py-2 bg-base-100 text-base-content rounded-lg hover:bg-gray-300">
                 Close
               </button>
               <button onClick={handleGoToBorrowed} className="px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700">
