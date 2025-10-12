@@ -76,8 +76,8 @@ const FeaturedAuthors = () => {
   };
 
   return (
-    <div className="bg-base-100">
-      <section className="py-16">
+    <div className="bg-base-100 overflow-x-hidden">
+      <section className="py-10">
         <h2
           data-aos="fade-up"
           className="text-3xl font-bold text-teal-600 text-center mb-8"
@@ -87,12 +87,12 @@ const FeaturedAuthors = () => {
 
         <div
           data-aos="fade-up"
-          className="flex flex-col lg:flex-row pt-16 "
+          className="flex flex-col lg:flex-row pt-12 "
         >
           {/* Left Side: Categories */}
           <div
             data-aos="fade-right"
-            className="w-full lg:w-2/5 bg-teal-800 p-6 py-12 flex flex-col gap-6"
+            className="w-full lg:w-2/5 bg-teal-800 p-6 py-10 flex flex-col gap-6"
           >
             {categories.map((cat) => (
               <button

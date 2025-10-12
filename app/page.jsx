@@ -32,6 +32,7 @@ export default function Home() {
       <FeaturedBooks></FeaturedBooks>
       <TopCategories></TopCategories>
       <ReadersFeedback></ReadersFeedback>
+      <FeaturedAuthors></FeaturedAuthors>
       <StatsSection></StatsSection>
       <UpcomingEvents></UpcomingEvents>
       <OurLatestNews></OurLatestNews>
